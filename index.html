@@ -52,7 +52,7 @@
             padding: 8px 15px;
             border-radius: 30px;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: rgba(212, 175, 55, 0.05);
         }
 
@@ -67,6 +67,37 @@
             font-size: 0.95rem;
             color: #e0e0e0;
             letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        /* Live Clock & Date Box Style */
+        .live-dateTime-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .live-clock {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .live-date {
+            font-size: 0.9rem;
+            color: #f1f1f1;
+            margin-bottom: 3px;
+        }
+
+        .hijri-date {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         .card {
@@ -220,11 +251,18 @@
 <body>
 
     <div class="container">
-        <!-- Header Section -->
+        <!-- Header Section with Live Clock & Dates -->
         <header>
             <div class="logo-text">✨ Noor-e-Madni Logo ✨</div>
             <h1>Noor-e-Madni</h1>
             <p class="subtitle">શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</p>
+            
+            <!-- Live Clock & Calendar Display -->
+            <div class="live-dateTime-box">
+                <div class="live-clock" id="liveClock">00:00:00 AM</div>
+                <div class="live-date" id="engDate">અંગ્રેજી તારીખ લોડ થઈ રહી છે...</div>
+                <div class="hijri-date" id="hijriDate">ચંદ્ર માસ / ઇસ્લામિક તારીખ</div>
+            </div>
         </header>
 
         <!-- Daily Islamic Quote Card -->
@@ -342,6 +380,45 @@
     </div>
 
     <script>
+        // Live Clock and Dates Function
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Time formatting (HH:MM:SS AM/PM)
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('liveClock').innerText = timeString;
+
+            // English Date formatting
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let engDateString = now.toLocaleDateString('gu-IN', options);
+            document.getElementById('engDate').innerText = engDateString;
+
+            // Islamic (Hijri) Date calculation using Intl API (Islamic Umm al-Qura calendar)
+            try {
+                let hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                let hijriDateString = hijriFormatter.format(now);
+                document.getElementById('hijriDate').innerText = "🌙 " + hijriDateString + " હિજરી";
+            } catch (e) {
+                document.getElementById('hijriDate').innerText = "🌙 ઇસ્લામિક કેલેન્ડર";
+            }
+        }
+
+        // Run clock immediately and update every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
         // Tasbih Logic
         let count = 0;
         function incrementTasbih() {
@@ -356,9 +433,7 @@
         // Check time for Surah Yaseen reminder at 6 AM
         setInterval(() => {
             let now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            if (hours === 6 && minutes === 0) {
+            if (now.getHours() === 6 && now.getMinutes() === 0) {
                 if (window.Notification && Notification.permission === "granted") {
                     new Notification("Noor-e-Madni - સુબ્હ બખૈર", { body: "સવારના 6 વાગી ગયા છે. સૂરે યાસીન શરીફ સાંભળવા માટે એપ ઓપન કરો." });
                 }
