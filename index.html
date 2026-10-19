@@ -3,119 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noor-e-Madni - نور مدنی</title>
+    <title>Noor-e-Madni - શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</title>
     <style>
         :root {
-            --primary-green: #0b4619;
-            --emerald-green: #138808;
-            --gold: #d4af37;
-            --light-gold: #f4e8c1;
-            --dark-bg: #05260c;
+            --primary-color: #0b3c24;
+            --secondary-color: #145a32;
+            --accent-color: #d4af37;
+            --bg-color: #062314;
+            --text-color: #ffffff;
+            --card-bg: #0e4d2b;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(5, 38, 12, 0.9), rgba(11, 70, 25, 0.9)), url('1000020942.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff;
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .header {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 2px solid var(--gold);
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .logo {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            object-fit: cover;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-        h1 {
-            color: var(--gold);
-            margin: 5px 0;
-            font-size: 24px;
-        }
-        .subtitle {
-            font-size: 14px;
-            color: var(--light-gold);
-        }
+
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 15px;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .card {
-            background: rgba(11, 70, 25, 0.85);
-            border: 1px solid var(--gold);
-            border-radius: 12px;
-            padding: 15px;
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            border: 2px dashed var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: inline-block;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: rgba(212, 175, 55, 0.05);
         }
-        .card h3 {
-            color: var(--gold);
-            margin-top: 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 8px;
+
+        h1 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            font-weight: 700;
         }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .card-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #f5f5f5;
+            margin-bottom: 15px;
+        }
+
         .btn {
             display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background-color: var(--accent-color);
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        .footer-nav {
             text-align: center;
-            padding: 15px;
-            background: rgba(0,0,0,0.6);
-            border-top: 1px solid var(--gold);
-            margin-top: 30px;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .btn:hover {
+            background-color: #e6c555;
+        }
+
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: #ffffff;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20ba5a;
+        }
+
+        /* Namaj Timing Table Style */
+        .namaj-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .namaj-table th, .namaj-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .namaj-table th {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Tasbih Counter Styles */
+        .tasbih-display {
+            font-size: 3rem;
+            color: var(--accent-color);
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .tasbih-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-reset {
+            background-color: #c0392b;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background-color: #a93226;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="1000020940.jpg" alt="Noor-e-Madni Logo" class="logo">
-        <h1>Noor-e-Madni</h1>
-        <div class="subtitle">শানে পীর ও মুরশিদ Hazrat Madni Miyan</div>
-    </div>
-
     <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo-text">✨ Noor-e-Madni Logo ✨</div>
+            <h1>Noor-e-Madni</h1>
+            <p class="subtitle">શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</p>
+        </header>
+
+        <!-- Daily Islamic Quote Card -->
         <div class="card">
-            <h3>📖 આજનો ઇસ્લામિક સુविचार / કલામ</h3>
-            <p>"મુહબ્બતે રસूल અને પૌરાણિક અકીદો જ આપણી સાચી ઓળખ છે."</p>
-            <button class="btn" onclick="shareOnWhatsApp('મુહબ્બતે રસूल અને પૌરાણિક અકીદો જ આપણી સાચી ઓળખ છે. - Noor-e-Madni App')">💬 WhatsApp પર શેર કરો</button>
+            <div class="card-title">📖 આજનો ઇસ્લામિક સુવિચાર / કલામ</div>
+            <p class="card-content">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે."</p>
+            <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
+        <!-- Aminul Qadri & Sunni Dawate Islami Bayanaat Card (New Feature) -->
         <div class="card">
-            <h3>🕋 મક્કા અને મદીના લાઈવ ઝિયારત</h3>
-            <p>એપની અંદરથી જ મક્કા મુઅ્ઝમા અને મદીના મુનવ્વરાના દર્શન કરો.</p>
-            <a href="https://www.youtube.com/results?search_query=makkah+madinah+live" target="_blank" class="btn">▶ લાઈવ ઝિયારત જુઓ</a>
+            <div class="card-title">🎙️ અમીનુલ કાદરી સાહેબ અને સુન્ની દાવતે ઇસ્લામી બયાનાત</div>
+            <p class="card-content">હઝરત અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબ અને સુન્ની દાવતે ઇસ્લામીના પવિત્ર સુધારણાત્મક બયાનો અને વિડીયો નિહાળો:</p>
+            <a href="https://www.youtube.com/results?search_query=Maulana+Aminul+Qadri+Bayanaat" target="_blank" class="btn">▶ અમીનુલ કાદરી સાહેબના બયાનો</a>
+            <a href="https://www.youtube.com/results?search_query=Sunni+Dawate+Islami+India" target="_blank" class="btn">▶ સુન્ની દાવતે ઇસ્લામી (SDI) વીડિયોઝ</a>
         </div>
-    </div>
 
-    <div class="footer-nav">
-        <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" class="btn" style="background:#25D366; color:#fff;">📢 WhatsApp ચેનલ જૉઇન કરો</a>
+        <!-- Namaj Timings & Azan Notification Card -->
+        <div class="card">
+            <div class="card-title">🕌 પંચવક્ત નમાઝ અને અઝાન ટાઇમ્સ</div>
+            <table class="namaj-table">
+                <tr>
+                    <th>નમાઝ</th>
+                    <th>સમય</th>
+                </tr>
+                <tr><td>ફજર (Fajr)</td><td>સવારે ૦૫:૧૫</td></tr>
+                <tr><td>ઝોહર (Zuhr)</td><td>બપોરે ૦૧:૧૫</td></tr>
+                <tr><td>અસ્ર (Asr)</td><td>સાંજે ૦૪:૪૫</td></tr>
+                <tr><td>મગરીબ (Maghrib)</td><td>સૂર્યાસ્ત સમયે</td></tr>
+                <tr><td>ઇશા (Isha)</td><td>રાત્રે ૦૮:૧૫</td></tr>
+                <tr><td><strong>જુમ્મા</strong></td><td><strong>બપોરે ૦૧:૩૦</strong></td></tr>
+            </table>
+            <button class="btn" onclick="enableAzanAlert()">🔔 અઝાન નોટિફિકેશન ચાલુ કરો</button>
+        </div>
+
+        <!-- Qibla Direction Card -->
+        <div class="card">
+            <div class="card-title">🧭 કિબલા દિશા (Qibla Finder)</div>
+            <p class="card-content">મક્કા મુઅ્ઝ્ઝમા (કાઅબા શરીફ) ની સાચી દિશા જાણવા માટે ક્લિક કરો:</p>
+            <a href="https://qiblafinder.withgoogle.com/" target="_blank" class="btn">🌍 કિબલા દિશા તપાસો</a>
+        </div>
+
+        <!-- Digital Tasbih Counter Card -->
+        <div class="card">
+            <div class="card-title">📿 ડિજિટલ તસબીહ કાઉન્ટર</div>
+            <p class="card-content" style="text-align: center; margin-bottom: 5px;">દરૂદ શરીફ કે ઝિ઼ક્રો અઝકાર ગણો:</p>
+            <div class="tasbih-display" id="counter">0</div>
+            <div class="tasbih-buttons">
+                <button class="btn" onclick="incrementTasbih()" style="flex: 2;">👆 ગણો (Count)</button>
+                <button class="btn btn-reset" onclick="resetTasbih()" style="flex: 1;">🔄 રિસેટ</button>
+            </div>
+        </div>
+
+        <!-- Live Makkah & Madinah Streaming Card -->
+        <div class="card">
+            <div class="card-title">🕋 મક્કા અને મદીના લાઈવ ઝિયારત</div>
+            <p class="card-content">એપની અંદર જ મક્કા મુઅ્ઝ્ઝમા અને મદીના મુનવ્વરાના પવિત્ર દર્શન કરો.</p>
+            <a href="https://www.youtube.com/results?search_query=makkah+madinah+live+247" target="_blank" class="btn">▶ લાઈવ ઝિયારત જુઓ</a>
+        </div>
+
+        <!-- WhatsApp Channel Card -->
+        <div class="card" style="text-align: center; background: #0b3c24;">
+            <a href="https://whatsapp.com" target="_blank" class="btn whatsapp-btn" style="font-size: 1rem;">📢 WhatsApp ચેનલ જૉઇન કરો</a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Noor-e-Madni. All Rights Reserved.<br>Designed with ❤️ for Asif Khimani</p>
+        </footer>
     </div>
 
     <script>
-        function shareOnWhatsApp(message) {
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://api.whatsapp.com/send?text=${encodedMessage}`, '_blank');
+        // Tasbih Logic
+        let count = 0;
+        function incrementTasbih() {
+            count++;
+            document.getElementById('counter').innerText = count;
+        }
+        function resetTasbih() {
+            count = 0;
+            document.getElementById('counter').innerText = count;
+        }
+
+        // Azan Alert Logic
+        function enableAzanAlert() {
+            if (window.Notification && Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        alert("જઝાકલ્લાહ! નમાઝના સમયની નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
+                        new Notification("Noor-e-Madni", { body: "નમાઝના સમય માટે અઝાન એલર્ટ સેટ છે." });
+                    } else {
+                        alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
+                    }
+                });
+            } else {
+                alert("તમારું બ્રાઉઝર નોટિફિકેશન સપોર્ટ કરતું નથી.");
+            }
         }
     </script>
+
 </body>
 </html>
