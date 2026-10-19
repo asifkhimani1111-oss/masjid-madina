@@ -125,7 +125,6 @@
             background-color: #20ba5a;
         }
 
-        /* Native Audio player style */
         audio {
             width: 100%;
             margin-top: 10px;
@@ -133,7 +132,6 @@
             outline: none;
         }
 
-        /* Detailed Namaj & Sehri Table Style */
         .namaj-table {
             width: 100%;
             border-collapse: collapse;
@@ -183,7 +181,6 @@
             line-height: 1.5;
         }
 
-        /* Tasbih Counter Styles */
         .tasbih-display {
             font-size: 3rem;
             color: var(--accent-color);
@@ -237,17 +234,17 @@
             <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
-        <!-- Surah Yaseen Built-in Audio Player Card -->
+        <!-- Surah Yaseen Built-in Audio Player Card (Fixed Link) -->
         <div class="card">
             <div class="card-title">🎧 સૂરે યાસીન (Surah Yaseen Audio)</div>
             <p class="card-content">સવારે કે ગમે ત્યારે ડાયરેક્ટ સાંભળો અથવા ઓફલાઇન ઉપયોગ માટે ડાઉનલોડ કરો:</p>
             
             <audio controls>
-                <source src="https://download.quranicaudio.com/quran/mishary_rashid_alafasy/036.mp3" type="audio/mpeg">
+                <source src="https://archive.org/download/SurahYasinMisharyRashidAlafasy_201805/SurahYasin.mp3" type="audio/mpeg">
                 તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
             </audio>
 
-            <a href="https://download.quranicaudio.com/quran/mishary_rashid_alafasy/036.mp3" download class="btn" style="margin-top: 12px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
+            <a href="https://archive.org/download/SurahYasinMisharyRashidAlafasy_201805/SurahYasin.mp3" download class="btn" style="margin-top: 12px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
         </div>
 
         <!-- Aminul Qadri & Sunni Dawate Islami (SDI) Audio Card -->
@@ -256,7 +253,7 @@
             <p class="card-content">હઝરત અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબનું વિશેષ રોઝા અને ઇસ્લાહ પર બયાન:</p>
             
             <audio controls>
-                <source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg">
+                <source src="https://archive.org/download/QuranCentral/001Al-Fatihah.mp3" type="audio/mpeg">
                 તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
             </audio>
         </div>
@@ -267,7 +264,7 @@
             <p class="card-content">દાવતે ઇસ્લામી હિન્દના મુબારક સુધારણાત્મક કલામ અને દર્સ:</p>
             
             <audio controls>
-                <source src="https://server11.mp3quran.net/sds/001.mp3" type="audio/mpeg">
+                <source src="https://archive.org/download/QuranCentral/002Al-Baqarah.mp3" type="audio/mpeg">
                 તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
             </audio>
         </div>
@@ -297,7 +294,7 @@
                     <th>અંતિમ સમય</th>
                 </tr>
                 <tr><td>ફજર (Fajr)</td><td>૦૫:૧૫</td><td>સૂર્યોદય સુધી (૦૬:૨૫)</td></tr>
-                <tr><td>ઝોહਰ (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
+                <tr><td>ઝોહર (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
                 <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
                 <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
                 <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
@@ -362,7 +359,7 @@
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
                         alert("જઝાકલ્લાહ! સેહરી અને ઇફ્તારની નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
-                        new Notification("Noor-e-Madni - સેહરી એલર્ટ", { body: "સેહરીનો સમય થઈ રહ્યો છે. નિયત કરી લો: વ બિસૌમિ ગદિન નવૈતુ..." });
+                        new Notification("Noor-e-Madni - સેહરી એલર્ટ", { body: "સેહરીનો સમય થઈ રહ્યો છે. નિયત કરી લો: વ બિસૌમિ ગદિન નဝૈતુ..." });
                     } else {
                         alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
                     }
@@ -376,7 +373,7 @@
         function enableAzanAlert() {
             if (window.Notification && Notification.permission !== "denied") {
                 Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
+                    if, (permission === "granted") {
                         alert("જઝાકલ્લાહ! નમાઝના સમયની અઝાન નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
                         new Notification("Noor-e-Madni", { body: "નમાઝના સમય માટે અઝાન એલર્ટ સેટ છે." });
                     } else {
