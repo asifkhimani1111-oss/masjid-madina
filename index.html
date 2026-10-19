@@ -272,39 +272,39 @@
             <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
-        <!-- Surah Yaseen Audio & Direct Player Card -->
+        <!-- Surah Yaseen Audio & Direct Player Card (Fixed Archive Link) -->
         <div class="card" style="border: 2px solid var(--accent-color);">
             <div class="card-title">🎧 સૂરે યાસીન શરીફ (Surah Yaseen)</div>
             <p class="card-content">સવારે ૬ વાગ્યે અથવા ગમે ત્યારે પવિત્ર તિલાવત સાંભળો:</p>
             
             <audio controls>
-                <source src="https://server11.mp3quran.net/yasin/036.mp3" type="audio/mpeg">
+                <source src="https://archive.org/download/SurahYasinMisharyRashidAlafasy_201805/SurahYasin.mp3" type="audio/mpeg">
                 તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
             </audio>
 
-            <a href="https://m.youtube.com/watch?v=5Vv0v9icqAk" target="_blank" class="btn" style="margin-top: 12px; background-color: #c0392b; color: #fff;">▶ સૂરે યાસીન લાઈવ તિલાવત જુઓ</a>
-            <a href="https://server11.mp3quran.net/yasin/036.mp3" download class="btn" style="margin-top: 5px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
+            <a href="https://www.youtube.com/results?search_query=Surah+Yaseen+Mishary+Rashid" target="_blank" class="btn" style="margin-top: 12px; background-color: #c0392b; color: #fff;">▶ સૂરે યાસીન વિડીયો/ઓડિયો જુઓ</a>
+            <a href="https://archive.org/download/SurahYasinMisharyRashidAlafasy_201805/SurahYasin.mp3" download class="btn" style="margin-top: 5px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
         </div>
 
         <!-- 1. Ashrafia Channel (Hazrat Madni Miyan) -->
         <div class="card">
             <div class="card-title">✨ અશરફી ચેનલ (Hazrat Madni Miyan)</div>
             <p class="card-content">હુઝૂર તાજુશશરીઆ અને પીર ઓ મુરશિદ હઝરત અલ્લામા મૌલાના અશરફ મિયાં કિબલાના રોજના મુબારક પ્રોગ્રામ્સ અને બયાનો નિહાળો:</p>
-            <a href="https://m.youtube.com/@AshrafiaNetwork" target="_blank" class="btn">▶ અશરફી ચેનલ ઓપન કરો</a>
+            <a href="https://www.youtube.com/results?search_query=Ashrafia+Network+Madni+Miyan" target="_blank" class="btn">▶ અશરફી ચેનલ રોજના પ્રોગ્રામ્સ</a>
         </div>
 
         <!-- 2. Madani Channel (Dawat-e-Islami) -->
         <div class="card">
             <div class="card-title">📺 મદની ચેનલ (Dawate Islami Live & Programs)</div>
             <p class="card-content">દાવતે ઇસ્લામીની પવિત્ર મદની ચેનલના ૨૪ કલાક લાઈવ પ્રસારણ અને રોજના નવા પ્રોગ્રામ્સ જુઓ:</p>
-            <a href="https://m.youtube.com/@MadaniChannel" target="_blank" class="btn">▶ મદની ચેનલ લાઈવ & વીડિયોઝ</a>
+            <a href="https://www.youtube.com/results?search_query=Madani+Channel+Live+Dawate+Islami" target="_blank" class="btn">▶ મદની ચેનલ લાઈવ & વીડિયોઝ</a>
         </div>
 
         <!-- 3. SDI Channel (Sunni Dawate Islami & Aminul Qadri) -->
         <div class="card">
             <div class="card-title">🎙️ એસડીઆઈ ચેનલ (SDI & Maulana Aminul Qadri)</div>
             <p class="card-content">સુન્ની દાવતે ઇસ્લામી (SDI) અને અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબના રોજના ખાસ ઇસ્લામિક પ્રોગ્રામ્સ:</p>
-            <a href="https://m.youtube.com/@SunniDawateIslamiSDI" target="_blank" class="btn">▶ એસડીઆઈ ચેનલ ઓપન કરો</a>
+            <a href="https://www.youtube.com/results?search_query=Sunni+Dawate+Islami+Aminul+Qadri" target="_blank" class="btn">▶ એસડીઆઈ ચેનલ પ્રોગ્રામ્સ</a>
         </div>
 
         <!-- Namaj, Sehri & Iftar Timings Card with Niyat -->
@@ -390,7 +390,7 @@
             let seconds = now.getSeconds();
             let ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
+            hours = hours ? hours : 12;
             minutes = minutes < 10 ? '0' + minutes : minutes;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
@@ -401,7 +401,7 @@
             let engDateString = now.toLocaleDateString('gu-IN', options);
             document.getElementById('engDate').innerText = engDateString;
 
-            // Islamic (Hijri) Date calculation using Intl API (Islamic Umm al-Qura calendar)
+            // Islamic (Hijri) Date calculation using Intl API
             try {
                 let hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
                     day: 'numeric',
