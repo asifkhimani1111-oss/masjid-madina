@@ -234,12 +234,12 @@
             <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
-        <!-- Surah Yaseen Built-in Audio Player Card -->
-        <div class="card">
-            <div class="card-title">🎧 સૂરે યાસીન (Surah Yaseen Audio)</div>
-            <p class="card-content">સવારે કે ગમે ત્યારે ડાયરેક્ટ સાંભળો અથવા ઓફલાઇન ઉપયોગ માટે ડાઉનલોડ કરો:</p>
+        <!-- Surah Yaseen Built-in Audio Player Card (Fixed & Auto/Direct Ready) -->
+        <div class="card" style="border: 2px solid var(--accent-color);">
+            <div class="card-title">🎧 સૂરે યાસીન શરીફ (Surah Yaseen Audio)</div>
+            <p class="card-content">સવારે ૬ વાગ્યે અથવા ગમે ત્યારે પવિત્ર તિલાવત સાંભળો (ઓફલાઇન માટે ડાઉનલોડ કરો):</p>
             
-            <audio controls>
+            <audio id="yaseenAudio" controls>
                 <source src="https://server11.mp3quran.net/yasin/036.mp3" type="audio/mpeg">
                 તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
             </audio>
@@ -247,26 +247,26 @@
             <a href="https://server11.mp3quran.net/yasin/036.mp3" download class="btn" style="margin-top: 12px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
         </div>
 
-        <!-- Aminul Qadri & Sunni Dawate Islami (SDI) Audio Card -->
+        <!-- 1. Ashrafia Channel (Hazrat Madni Miyan) -->
         <div class="card">
-            <div class="card-title">🎙️ અમીનુલ કાદરી સાહેબ & સુન્ની દાવતે ઇસ્લામી (SDI)</div>
-            <p class="card-content">હઝરત અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબનું વિશેષ રોઝા અને ઇસ્લાહ પર બયાન:</p>
-            
-            <audio controls>
-                <source src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg">
-                તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
-            </audio>
+            <div class="card-title">✨ અશરફી ચેનલ (Hazrat Madni Miyan)</div>
+            <p class="card-content">હુઝૂર તાજુશશરીઆ અને પીર ઓ મુરશિદ હઝરત અલ્લામા મૌલાના અશરફ મિયાં કિબલાના રોજના મુબારક પ્રોગ્રામ્સ અને બયાનો નિહાળો:</p>
+            <a href="https://www.youtube.com/results?search_query=Ashrafia+Network+Madni+Miyan" target="_blank" class="btn">▶ અશરફી ચેનલ રોજના પ્રોગ્રામ્સ</a>
         </div>
 
-        <!-- Dawate Islami India Audio Card -->
+        <!-- 2. Madani Channel (Dawat-e-Islami) -->
         <div class="card">
-            <div class="card-title">📺 દાવતે ઇસ્લામી હિન્દ (Madani Audio Section)</div>
-            <p class="card-content">દાવતે ઇસ્લામી હિન્દના મુબારક સુધારણાત્મક કલામ અને દર્સ:</p>
-            
-            <audio controls>
-                <source src="https://server6.mp3quran.net/sds/001.mp3" type="audio/mpeg">
-                તમારું બ્રાઉઝર ઓડિયો પ્લેયર સપોર્ટ કરતું નથી.
-            </audio>
+            <div class="card-title">📺 મદની ચેનલ (Dawate Islami Live & Programs)</div>
+            <p class="card-content">દાવતે ઇસ્લામીની પવિત્ર મદની ચેનલના ૨૪ કલાક લાઈવ પ્રસારણ અને રોજના નવા પ્રોગ્રામ્સ જુઓ:</p>
+            <a href="https://www.madaniapp.com/" target="_blank" class="btn">▶ મદની ચેનલ લાઈવ જુઓ</a>
+            <a href="https://www.youtube.com/results?search_query=MadaniChannel+DawateIslami" target="_blank" class="btn">▶ મદની ચેનલ વીડિયોઝ</a>
+        </div>
+
+        <!-- 3. SDI Channel (Sunni Dawate Islami & Aminul Qadri) -->
+        <div class="card">
+            <div class="card-title">🎙️ એસડીઆઈ ચેનલ (SDI & Maulana Aminul Qadri)</div>
+            <p class="card-content">સુન્ની દાવતે ઇસ્લામી (SDI) અને અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબના રોજના ખાસ ઇસ્લામિક પ્રોગ્રામ્સ:</p>
+            <a href="https://www.youtube.com/results?search_query=SunniDawateIslamiSDI+AminulQadri" target="_blank" class="btn">▶ એસડીઆઈ ચેનલ પ્રોગ્રામ્સ</a>
         </div>
 
         <!-- Namaj, Sehri & Iftar Timings Card with Niyat -->
@@ -294,7 +294,7 @@
                     <th>અંતિમ સમય</th>
                 </tr>
                 <tr><td>ફજર (Fajr)</td><td>૦૫:૧૫</td><td>સૂર્યોદય સુધી (૦૬:૨૫)</td></tr>
-                <tr><td>ઝોહર (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
+                <tr><td>ઝોહਰ (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
                 <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
                 <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
                 <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
@@ -352,6 +352,19 @@
             count = 0;
             document.getElementById('counter').innerText = count;
         }
+
+        // Check time for Surah Yaseen reminder / auto-check at 6 AM
+        setInterval(() => {
+            let now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            // જો સવારના 6 વાગ્યા હોય તો નોટિફિકેશન મોકલશે
+            if (hours === 6 && minutes === 0) {
+                if (window.Notification && Notification.permission === "granted") {
+                    new Notification("Noor-e-Madni - સુબ્હ બખૈર", { body: "સવારના 6 વાગી ગયા છે. સૂરે યાસીન શરીફ સાંભળવા માટે એપ ઓપન કરો." });
+                }
+            }
+        }, 60000); // દર મિનિટે ચેક કરશે
 
         // Sehri & Iftar Alert Logic
         function enableSehriIftarAlert() {
