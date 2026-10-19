@@ -125,7 +125,7 @@
             background-color: #20ba5a;
         }
 
-        /* Namaj Timing Table Style */
+        /* Detailed Namaj & Sehri Table Style */
         .namaj-table {
             width: 100%;
             border-collapse: collapse;
@@ -134,15 +134,45 @@
         }
 
         .namaj-table th, .namaj-table td {
-            padding: 10px;
+            padding: 9px 6px;
             text-align: left;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .namaj-table th {
             color: var(--accent-color);
             font-weight: 600;
+        }
+
+        .sehri-iftar-box {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px dashed var(--accent-color);
+        }
+
+        .sehri-iftar-box p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sehri-iftar-box span {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .niyat-text {
+            font-size: 0.85rem;
+            color: #dcdcdc;
+            background: rgba(212, 175, 55, 0.08);
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 5px;
+            line-height: 1.5;
         }
 
         /* Tasbih Counter Styles */
@@ -199,30 +229,56 @@
             <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
-        <!-- Aminul Qadri & Sunni Dawate Islami Bayanaat Card (New Feature) -->
+        <!-- Aminul Qadri & Sunni Dawate Islami (SDI) Card -->
         <div class="card">
-            <div class="card-title">🎙️ અમીનુલ કાદરી સાહેબ અને સુન્ની દાવતે ઇસ્લામી બયાનાત</div>
-            <p class="card-content">હઝરત અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબ અને સુન્ની દાવતે ઇસ્લામીના પવિત્ર સુધારણાત્મક બયાનો અને વિડીયો નિહાળો:</p>
+            <div class="card-title">🎙️ અમીનુલ કાદરી સાહેબ & સુન્ની દાવતે ઇસ્લામી (SDI)</div>
+            <p class="card-content">હઝરત અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબ અને સુન્ની દાવતે ઇસ્લામીના પવિત્ર સુધારણાત્મક બયાનો:</p>
             <a href="https://www.youtube.com/results?search_query=Maulana+Aminul+Qadri+Bayanaat" target="_blank" class="btn">▶ અમીનુલ કાદરી સાહેબના બયાનો</a>
-            <a href="https://www.youtube.com/results?search_query=Sunni+Dawate+Islami+India" target="_blank" class="btn">▶ સુન્ની દાવતે ઇસ્લામી (SDI) વીડિયોઝ</a>
+            <a href="https://www.youtube.com/results?search_query=Sunni+Dawate+Islami+India" target="_blank" class="btn">▶ સુન્ની દાવતે ઇસ્લામી વીડિયોઝ</a>
         </div>
 
-        <!-- Namaj Timings & Azan Notification Card -->
+        <!-- Dawate Islami India (Madani Channel) Card -->
         <div class="card">
-            <div class="card-title">🕌 પંચવક્ત નમાઝ અને અઝાન ટાઇમ્સ</div>
+            <div class="card-title">📺 દાવતે ઇસ્લામી હિન્દ (Dawate Islami India)</div>
+            <p class="card-content">દાવતે ઇસ્લામી હિન્દ અને મદની ચેનલના સુધારણાત્મક પ્રોજેક્ટ્સ તથા બયાનો:</p>
+            <a href="https://www.youtube.com/results?search_query=Dawate+Islami+India+Official" target="_blank" class="btn">▶ દાવતે ઇસ્લામી હિન્દ બયાનો</a>
+            <a href="https://www.youtube.com/results?search_query=Madani+Channel+Urdu" target="_blank" class="btn">▶ મદની ચેનલ લાઈવ / વીડિયોઝ</a>
+        </div>
+
+        <!-- Namaj, Sehri & Iftar Timings Card with Niyat -->
+        <div class="card">
+            <div class="card-title">🕌 નમાઝ, સેહરી અને ઇફ્તાર ટાઇમિંગ્સ</div>
+            
+            <div class="sehri-iftar-box">
+                <p>🌙 સેહરી સમાપ્ત: <span>સવારે ૦૫:૦૦ વાગ્યે</span></p>
+                <div class="niyat-text">
+                    <strong>સેહરીની નિયત:</strong> "વ બિસૌમિ ગદિન નવૈતુ મિન શહરી રમદાન." (અથવા ગુજરાતીમાં: હે અલ્લાહ, મેં આવતીકાલના રમઝાનના રોજાની નિયત કરી.)
+                </div>
+            </div>
+
+            <div class="sehri-iftar-box">
+                <p>🌇 ઇફ્તાર / સૂર્યાસ્ત: <span>સાંજે ૦૬:૧૫ વાગ્યે</span></p>
+                <div class="niyat-text">
+                    <strong>ઇફ્તારની દુઆ:</strong> "અલ્લાહુમ્મ લકા સુમ્તુ વ બિબિક આામન્તુ વ અલા રિઝ્કિક અફ્તર્તુ."
+                </div>
+            </div>
+
             <table class="namaj-table">
                 <tr>
                     <th>નમાઝ</th>
-                    <th>સમય</th>
+                    <th>શરૂઆત</th>
+                    <th>અંતિમ સમય</th>
                 </tr>
-                <tr><td>ફજર (Fajr)</td><td>સવારે ૦૫:૧૫</td></tr>
-                <tr><td>ઝોહર (Zuhr)</td><td>બપોરે ૦૧:૧૫</td></tr>
-                <tr><td>અસ્ર (Asr)</td><td>સાંજે ૦૪:૪૫</td></tr>
-                <tr><td>મગરીબ (Maghrib)</td><td>સૂર્યાસ્ત સમયે</td></tr>
-                <tr><td>ઇશા (Isha)</td><td>રાત્રે ૦૮:૧૫</td></tr>
-                <tr><td><strong>જુમ્મા</strong></td><td><strong>બપોરે ૦૧:૩૦</strong></td></tr>
+                <tr><td>ફજર (Fajr)</td><td>૦૫:૧૫</td><td>સૂર્યોદય સુધી (૦૬:૨૫)</td></tr>
+                <tr><td>ઝોહર (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
+                <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
+                <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
+                <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
+                <tr><td><strong>જુમ્મા</strong></td><td><strong>૦૧:૩૦</strong></td><td><strong>બપોરે</strong></td></tr>
             </table>
-            <button class="btn" onclick="enableAzanAlert()">🔔 અઝાન નોટિફિકેશન ચાલુ કરો</button>
+            
+            <button class="btn" onclick="enableSehriIftarAlert()">🔔 સેહરી & ઇફ્તાર એલર્ટ ચાલુ કરો</button>
+            <button class="btn" onclick="enableAzanAlert()" style="background-color: #27ae60; color: #fff;">🔔 અઝાન નોટિફિકેશન ચાલુ કરો</button>
         </div>
 
         <!-- Qibla Direction Card -->
@@ -273,12 +329,28 @@
             document.getElementById('counter').innerText = count;
         }
 
+        // Sehri & Iftar Alert Logic
+        function enableSehriIftarAlert() {
+            if (window.Notification && Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        alert("જઝાકલ્લાહ! સેહરી અને ઇફ્તારની નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
+                        new Notification("Noor-e-Madni - સેહરી એલર્ટ", { body: "સેહરીનો સમય થઈ રહ્યો છે. નિયત કરી લો: વ બિસૌમિ ગદિન નવૈતુ..." });
+                    } else {
+                        alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
+                    }
+                });
+            } else {
+                alert("તમારું બ્રાઉઝર નોટિફિકેશન સપોર્ટ કરતું નથી.");
+            }
+        }
+
         // Azan Alert Logic
         function enableAzanAlert() {
             if (window.Notification && Notification.permission !== "denied") {
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
-                        alert("જઝાકલ્લાહ! નમાઝના સમયની નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
+                        alert("જઝાકલ્લાહ! નમાઝના સમયની અઝાન નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
                         new Notification("Noor-e-Madni", { body: "નમાઝના સમય માટે અઝાન એલર્ટ સેટ છે." });
                     } else {
                         alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
