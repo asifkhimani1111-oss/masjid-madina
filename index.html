@@ -70,7 +70,6 @@
             margin-bottom: 15px;
         }
 
-        /* Creator Status Badge */
         .creator-badge {
             background: rgba(212, 175, 55, 0.15);
             border: 1px solid var(--accent-color);
@@ -84,7 +83,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Live Clock & Date Box Style */
         .live-dateTime-box {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--accent-color);
@@ -137,6 +135,54 @@
             line-height: 1.6;
             color: #f5f5f5;
             margin-bottom: 15px;
+        }
+
+        /* Status Creator Studio Preview Box */
+        .studio-preview {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            background-color: #0b3c24;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 15px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        .studio-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+            margin-top: 20px;
+        }
+
+        .studio-brand {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .form-control-file {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px dashed var(--accent-color);
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
 
         .btn {
@@ -271,22 +317,42 @@
             <h1>Noor-e-Madni</h1>
             <p class="subtitle">શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</p>
             
-            <!-- Creator Badge Status -->
             <div class="creator-badge">⭐ Noor-e-Madni is Asif Khimani's Product ⭐</div>
             
-            <!-- Live Clock & Calendar Display -->
             <div class="live-dateTime-box">
                 <div class="live-clock" id="liveClock">00:00:00 AM</div>
                 <div class="live-date" id="engDate">અંગ્રેજી તારીખ લોડ થઈ રહી છે...</div>
                 <div class="hijri-date" id="hijriDate">ચંદ્ર માસ / ઇસ્લામિક તારીખ</div>
             </div>
+
+            <button id="installBtn" class="btn" style="background-color: #27ae60; color: #fff; margin-top: 15px; display: none;">📲 મોબાઈલ હોમ સ્ક્રીન પર ઇન્સ્ટોલ કરો</button>
         </header>
+
+        <!-- Custom Status Maker Studio Card -->
+        <div class="card" style="border: 2px solid var(--accent-color);">
+            <div class="card-title">🎨 કસ્ટમ સ્ટેટસ / પોસ્ટ સ્ટુડિયો</div>
+            <p class="card-content">તમારો પોતાનો ફોટો (ગેલેરી/કેમેરાથી) અપલોડ કરો અને સુવિચાર સાથે સુંદર સ્ટેટસ બનાવો:</p>
+            
+            <!-- Preview Box -->
+            <div class="studio-preview" id="studioPreview">
+                <div class="studio-text" id="studioText">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ છે."</div>
+                <div class="studio-brand">✨ Noor-e-Madni is Asif Khimani's Product ✨</div>
+            </div>
+
+            <!-- Upload Custom Image -->
+            <label style="font-size: 0.85rem; color: var(--accent-color); margin-bottom: 4px; display: block;">📷 ફોટો પસંદ કરો (ગેલેરી/કેમેરા):</label>
+            <input type="file" id="imageLoader" accept="image/*" class="form-control-file">
+
+            <!-- Custom Quote Input -->
+            <textarea id="customQuoteInput" class="form-control-file" rows="2" style="resize: none;" placeholder="તમારો પોતાનો સુવિચાર અહીં લખો...">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ છે."</textarea>
+
+            <a href="#" id="whatsappShareBtn" target="_blank" class="btn whatsapp-btn">💬 ટેક્સ્ટ સાથે WhatsApp પર શેર કરો</a>
+        </div>
 
         <!-- Daily Changing Islamic Quote Card -->
         <div class="card">
             <div class="card-title">📖 આજનો ઇસ્લામિક સુવિચાર / કલામ</div>
             <p class="card-content" id="dailyQuote">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે."</p>
-            <a href="#" id="whatsappShareBtn" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
         <!-- Surah Yaseen Audio & Direct Player Card -->
@@ -303,35 +369,35 @@
             <a href="https://archive.org/download/SurahYasinMisharyRashidAlafasy_201805/SurahYasin.mp3" download class="btn" style="margin-top: 5px; background-color: #27ae60; color: #fff;">📥 સૂરે યાસીન ડાઉનલોડ કરો (ઓફલાઇન)</a>
         </div>
 
-        <!-- 1. Ashrafia Channel (Hazrat Madni Miyan) -->
+        <!-- 1. Ashrafia Channel -->
         <div class="card">
             <div class="card-title">✨ અશરફી ચેનલ (Hazrat Madni Miyan)</div>
             <p class="card-content">હુઝૂર તાજુશશરીઆ અને પીર ઓ મુરશિદ હઝરત અલ્લામા મૌલાના અશરફ મિયાં કિબલાના રોજના મુબારક પ્રોગ્રામ્સ અને બયાનો નિહાળો:</p>
             <a href="https://www.youtube.com/results?search_query=Ashrafia+Network+Madni+Miyan" target="_blank" class="btn">▶ અશરફી ચેનલ રોજના પ્રોગ્રામ્સ</a>
         </div>
 
-        <!-- 2. Madani Channel (Dawat-e-Islami) -->
+        <!-- 2. Madani Channel -->
         <div class="card">
             <div class="card-title">📺 મદની ચેનલ (Dawate Islami Live & Programs)</div>
             <p class="card-content">દાવતે ઇસ્લામીની પવિત્ર મદની ચેનલના ૨૪ કલાક લાઈવ પ્રસારણ અને રોજના નવા પ્રોગ્રામ્સ જુઓ:</p>
             <a href="https://www.youtube.com/results?search_query=Madani+Channel+Live+Dawate+Islami" target="_blank" class="btn">▶ મદની ચેનલ લાઈવ & વીડિયોઝ</a>
         </div>
 
-        <!-- 3. SDI Channel (Sunni Dawate Islami & Aminul Qadri) -->
+        <!-- 3. SDI Channel -->
         <div class="card">
             <div class="card-title">🎙️ એસડીઆઈ ચેનલ (SDI & Maulana Aminul Qadri)</div>
             <p class="card-content">સુન્ની દાવતે ઇસ્લામી (SDI) અને અલ્લામા મૌલાના અમીનુલ કાદરી સાહેબના રોજના ખાસ ઇસ્લામિક પ્રોગ્રામ્સ:</p>
             <a href="https://www.youtube.com/results?search_query=Sunni+Dawate+Islami+Aminul+Qadri" target="_blank" class="btn">▶ એસડીઆઈ ચેનલ પ્રોગ્રામ્સ</a>
         </div>
 
-        <!-- Namaj, Sehri & Iftar Timings Card with Niyat -->
+        <!-- Namaj, Sehri & Iftar Timings Card -->
         <div class="card">
             <div class="card-title">🕌 નમાઝ, સેહરી અને ઇફ્તાર ટાઇમિંગ્સ</div>
             
             <div class="sehri-iftar-box">
                 <p>🌙 સેહરી સમાપ્ત: <span>સવારે ૦૫:૦૦ વાગ્યે</span></p>
                 <div class="niyat-text">
-                    <strong>સેહરીની નિયત:</strong> "વ બિસૌમિ ગદિન નવૈતુ મિન શહરી રમદાન." (અથવા ગુજરાતીમાં: હે અલ્લાહ, મેં આવતીકાલના રમઝાનના રોજાની નિયત કરી.)
+                    <strong>સેહરીની નિયત:</strong> "વ બિસૌમિ ગદિન નવૈતુ મિન શહરી રમદાન."
                 </div>
             </div>
 
@@ -349,7 +415,7 @@
                     <th>અંતિમ સમય</th>
                 </tr>
                 <tr><td>ફજર (Fajr)</td><td>૦૫:૧૫</td><td>સૂર્યોદય સુધી (૦૬:૨૫)</td></tr>
-                <tr><td>ઝોહર (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
+                <tr><td>ઝોહਰ (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
                 <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
                 <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
                 <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
@@ -397,7 +463,46 @@
     </div>
 
     <script>
-        // Array of Daily Islamic Quotes
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                let { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            }
+        });
+
+        // Image Upload Customizer Logic
+        const imageLoader = document.getElementById('imageLoader');
+        imageLoader.addEventListener('change', function(e) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('studioPreview').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${event.target.result})`;
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        // Custom Quote Live Typing Sync
+        const customQuoteInput = document.getElementById('customQuoteInput');
+        customQuoteInput.addEventListener('input', function() {
+            let text = this.value;
+            document.getElementById('studioText').innerText = text;
+            
+            let shareText = `✨ આજનો ઇસ્લામિક સુવિચાર ✨\n\n${text}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
+            let shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
+        });
+
         const islamicQuotes = [
             "\"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે.\"",
             "\"જ્યારે અલ્લાહ પર ભરોસો મજબૂત હોય, ત્યારે મુશ્કેલીઓ પણ રહમત બની જાય છે.\"",
@@ -408,7 +513,6 @@
             "\"હંમેશાં સચું બોલો અને બીજાના હક પ્રત્યે સાવધ રહો, અલ્લાહ રાજી થાય છે.\""
         ];
 
-        // Live Clock, Dates and Daily Quote Function
         function updateDateTime() {
             const now = new Date();
             
@@ -459,8 +563,12 @@
             let selectedQuote = islamicQuotes[quoteIndex];
             document.getElementById('dailyQuote').innerText = selectedQuote;
 
-            let shareUrl = `https://api.whatsapp.com/send?text=આજનો ઇસ્લામિક સુવિચાર (Noor-e-Madni): ${encodeURIComponent(selectedQuote)}`;
-            document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
+            // Initial WhatsApp link setup if custom textarea is untouched
+            if(customQuoteInput.value === '') {
+                let shareText = `✨ આજનો ઇસ્લામિક સુવિચાર ✨\n\n${selectedQuote}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
+                let shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+                document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
+            }
         }
 
         updateDateTime();
