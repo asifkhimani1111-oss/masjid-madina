@@ -265,14 +265,14 @@
             </div>
         </header>
 
-        <!-- Daily Islamic Quote Card -->
+        <!-- Daily Changing Islamic Quote Card -->
         <div class="card">
             <div class="card-title">📖 આજનો ઇસ્લામિક સુવિચાર / કલામ</div>
-            <p class="card-content">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે."</p>
-            <a href="https://api.whatsapp.com/send?text=Aaj%20no%20Islamic%20Suvichar:%20%22મુહબ્બતે%20રસૂલ%20(સ.અ.વ.)%20અને%20સાચો%20ઇસ્લામી%20અકીદો%20જ%20આપણી%20સાચી%20ઓળખ%20છે.%22" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
+            <p class="card-content" id="dailyQuote">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે."</p>
+            <a href="#" id="whatsappShareBtn" target="_blank" class="btn whatsapp-btn">💬 WhatsApp પર શેર કરો</a>
         </div>
 
-        <!-- Surah Yaseen Audio & Direct Player Card (Fixed Archive Link) -->
+        <!-- Surah Yaseen Audio & Direct Player Card -->
         <div class="card" style="border: 2px solid var(--accent-color);">
             <div class="card-title">🎧 સૂરે યાસીન શરીફ (Surah Yaseen)</div>
             <p class="card-content">સવારે ૬ વાગ્યે અથવા ગમે ત્યારે પવિત્ર તિલાવત સાંભળો:</p>
@@ -321,7 +321,7 @@
             <div class="sehri-iftar-box">
                 <p>🌇 ઇફ્તાર / સૂર્યાસ્ત: <span>સાંજે ૦૬:૧૫ વાગ્યે</span></p>
                 <div class="niyat-text">
-                    <strong>ઇફ્તારની દુઆ:</strong> "અલ્લાહુમ્મ લકા સુમ્તુ વ બિબિક આામન્તુ વ અલા રિઝ્કિક અફ્તર્તુ."
+                    <strong>ઇફ્તારની દુઆ:</strong> "અલ્લાહુમ્મ લકા સુમ્તુ વ બિબિક આામન્તુ વ અલા રિઝ્કિક અഫ്્તર્તુ."
                 </div>
             </div>
 
@@ -332,11 +332,11 @@
                     <th>અંતિમ સમય</th>
                 </tr>
                 <tr><td>ફજર (Fajr)</td><td>૦૫:૧૫</td><td>સૂર્યોદય સુધી (૦૬:૨૫)</td></tr>
-                <tr><td>ઝોહਰ (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
+                <tr><td>ઝોહર (Zuhr)</td><td>૦૧:૧૫</td><td>અસ્ર સુધી</td></tr>
                 <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
                 <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
                 <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
-                <tr><td><strong>જુમ્મા</strong></td><td><strong>૦૧:૩૦</strong></td><td><strong>બપોરે</strong></td></tr>
+                <tr><td><strong>જુમ્મા</strong></td><td><strong>૦၁:૩૦</strong></td><td><strong>બપોરે</strong></td></tr>
             </table>
             
             <button class="btn" onclick="enableSehriIftarAlert()">🔔 સેહરી & ઇફ્તાર એલર્ટ ચાલુ કરો</button>
@@ -380,7 +380,18 @@
     </div>
 
     <script>
-        // Live Clock and Dates Function
+        // Array of Daily Islamic Quotes (Changes automatically every day)
+        const islamicQuotes = [
+            "\"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે.\"",
+            "\"જ્યારે અલ્લાહ પર ભરોસો મજબૂત હોય, ત્યારે મુશ્કેલીઓ પણ રહમત બની જાય છે.\"",
+            "\"સારો અખ્લાક (વર્તન) એ ઇમાનનો સૌથી વજનદાર હિસ્સો છે.\"",
+            "\"દરૂદ શરીફની કસરત દિલના અંધકારને દૂર કરે છે અને નૂરમાં બદલી નાખે છે.\"",
+            "\"માતા-પિતાની ખિદમત એ જન્નત મેળવવાનો સૌથી સરળ રસ્તો છે.\"",
+            "\"દીનની સમજ અને સુન્ની અકીદા પર પક્કા રહેવું એ જ સાચી કમાણી છે.\"",
+            "\"હંમેશાં સચું બોલો અને બીજાના હક પ્રત્યે સાવધ રહો, અલ્લાહ રાજી થાય છે.\""
+        ];
+
+        // Live Clock, Dates and Daily Quote Function
         function updateDateTime() {
             const now = new Date();
             
@@ -401,18 +412,43 @@
             let engDateString = now.toLocaleDateString('gu-IN', options);
             document.getElementById('engDate').innerText = engDateString;
 
-            // Islamic (Hijri) Date calculation using Intl API
+            // Islamic (Hijri) Date calculation with accurate Urdu/Arabic Hijri Month names mapping
             try {
-                let hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
+                let hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', {
                     day: 'numeric',
-                    month: 'long',
+                    month: 'numeric',
                     year: 'numeric'
                 });
-                let hijriDateString = hijriFormatter.format(now);
-                document.getElementById('hijriDate').innerText = "🌙 " + hijriDateString + " હિજરી";
+                let parts = hijriFormatter.formatToParts(now);
+                let hDay = parts.find(p => p.type === 'day').value;
+                let hMonthNum = parts.find(p => p.type === 'month').value;
+                let hYear = parts.find(p => p.type === 'year').value;
+
+                const hijriMonths = [
+                    "મુહર્રમ", "સફર", "રબીઉલ અવ્વલ", "રબીઉલ આખિર", 
+                    "જુમાદલ ઉલા", "જુમાદલ ઉખ્રા", "રજબ", "શાબાન", 
+                    "રમઝાન", "શવ્વાલ", "ઝીલકાદા", "ઝીલહજ્જ"
+                ];
+
+                let monthName = hijriMonths[parseInt(hMonthNum) - 1] || "ઇસ્લામિક મહિનો";
+                document.getElementById('hijriDate').innerText = `🌙 ${hDay} ${monthName}, ${hYear} હિજરી`;
             } catch (e) {
                 document.getElementById('hijriDate').innerText = "🌙 ઇસ્લામિક કેલેન્ડર";
             }
+
+            // Daily Quote Auto Change based on Day of the Year
+            let startOfYear = new Date(now.getFullYear(), 0, 0);
+            let diff = now - startOfYear;
+            let oneDay = 1000 * 60 * 60 * 24;
+            let dayOfYear = Math.floor(diff / oneDay);
+            let quoteIndex = dayOfYear % islamicQuotes.length;
+            
+            let selectedQuote = islamicQuotes[quoteIndex];
+            document.getElementById('dailyQuote').innerText = selectedQuote;
+
+            // Update WhatsApp Share Link dynamically
+            let shareUrl = `https://api.whatsapp.com/send?text=આજનો ઇસ્લામિક સુવિચાર (Noor-e-Madni): ${encodeURIComponent(selectedQuote)}`;
+            document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
         }
 
         // Run clock immediately and update every second
