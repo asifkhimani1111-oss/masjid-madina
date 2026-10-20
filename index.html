@@ -70,6 +70,20 @@
             margin-bottom: 15px;
         }
 
+        /* Creator Status Badge */
+        .creator-badge {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
         /* Live Clock & Date Box Style */
         .live-dateTime-box {
             background: rgba(0, 0, 0, 0.3);
@@ -77,7 +91,7 @@
             border-radius: 12px;
             padding: 12px;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .live-clock {
@@ -257,6 +271,9 @@
             <h1>Noor-e-Madni</h1>
             <p class="subtitle">શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</p>
             
+            <!-- Creator Badge Status -->
+            <div class="creator-badge">⭐ Noor-e-Madni is Asif Khimani's Product ⭐</div>
+            
             <!-- Live Clock & Calendar Display -->
             <div class="live-dateTime-box">
                 <div class="live-clock" id="liveClock">00:00:00 AM</div>
@@ -321,7 +338,7 @@
             <div class="sehri-iftar-box">
                 <p>🌇 ઇફ્તાર / સૂર્યાસ્ત: <span>સાંજે ૦૬:૧૫ વાગ્યે</span></p>
                 <div class="niyat-text">
-                    <strong>ઇફ્તારની દુઆ:</strong> "અલ્લાહુમ્મ લકા સુમ્તુ વ બિબિક આામન્તુ વ અલા રિઝ્કિક અഫ്્તર્તુ."
+                    <strong>ઇફ્તારની દુઆ:</strong> "અલ્લાહુમ્મ લકા સુમ્તુ વ બિબિક આામન્તુ વ અલા રિઝ્કિક અફ્તર્તુ."
                 </div>
             </div>
 
@@ -336,7 +353,7 @@
                 <tr><td>અસ્ર (Asr)</td><td>૦૪:૪૫</td><td>સૂર્યાસ્ત પહેલાં</td></tr>
                 <tr><td>મગરીબ (Maghrib)</td><td>૦૬:૧૫</td><td>શફક ગાયબ થાય ત્યાં સુધી</td></tr>
                 <tr><td>ઇશા (Isha)</td><td>૦૭:૪૫</td><td>સુબ્હે સાદિક પહેલાં</td></tr>
-                <tr><td><strong>જુમ્મા</strong></td><td><strong>૦၁:૩૦</strong></td><td><strong>બપોરે</strong></td></tr>
+                <tr><td><strong>જુમ્મા</strong></td><td><strong>૦૧:૩૦</strong></td><td><strong>બપોરે</strong></td></tr>
             </table>
             
             <button class="btn" onclick="enableSehriIftarAlert()">🔔 સેહરી & ઇફ્તાર એલર્ટ ચાલુ કરો</button>
@@ -375,12 +392,12 @@
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Noor-e-Madni. All Rights Reserved.<br>Designed with ❤️ for Asif Khimani</p>
+            <p>&copy; 2026 Noor-e-Madni. All Rights Reserved.<br><strong>Noor-e-Madni is Asif Khimani's Product</strong><br>Designed with ❤️ for Asif Khimani</p>
         </footer>
     </div>
 
     <script>
-        // Array of Daily Islamic Quotes (Changes automatically every day)
+        // Array of Daily Islamic Quotes
         const islamicQuotes = [
             "\"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ અને સફળતાની ચાવી છે.\"",
             "\"જ્યારે અલ્લાહ પર ભરોસો મજબૂત હોય, ત્યારે મુશ્કેલીઓ પણ રહમત બની જાય છે.\"",
@@ -395,7 +412,6 @@
         function updateDateTime() {
             const now = new Date();
             
-            // Time formatting (HH:MM:SS AM/PM)
             let hours = now.getHours();
             let minutes = now.getMinutes();
             let seconds = now.getSeconds();
@@ -407,12 +423,10 @@
             let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
             document.getElementById('liveClock').innerText = timeString;
 
-            // English Date formatting
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             let engDateString = now.toLocaleDateString('gu-IN', options);
             document.getElementById('engDate').innerText = engDateString;
 
-            // Islamic (Hijri) Date calculation with accurate Urdu/Arabic Hijri Month names mapping
             try {
                 let hijriFormatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', {
                     day: 'numeric',
@@ -436,7 +450,6 @@
                 document.getElementById('hijriDate').innerText = "🌙 ઇસ્લામિક કેલેન્ડર";
             }
 
-            // Daily Quote Auto Change based on Day of the Year
             let startOfYear = new Date(now.getFullYear(), 0, 0);
             let diff = now - startOfYear;
             let oneDay = 1000 * 60 * 60 * 24;
@@ -446,16 +459,13 @@
             let selectedQuote = islamicQuotes[quoteIndex];
             document.getElementById('dailyQuote').innerText = selectedQuote;
 
-            // Update WhatsApp Share Link dynamically
             let shareUrl = `https://api.whatsapp.com/send?text=આજનો ઇસ્લામિક સુવિચાર (Noor-e-Madni): ${encodeURIComponent(selectedQuote)}`;
             document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
         }
 
-        // Run clock immediately and update every second
         updateDateTime();
         setInterval(updateDateTime, 1000);
 
-        // Tasbih Logic
         let count = 0;
         function incrementTasbih() {
             count++;
@@ -466,7 +476,6 @@
             document.getElementById('counter').innerText = count;
         }
 
-        // Check time for Surah Yaseen reminder at 6 AM
         setInterval(() => {
             let now = new Date();
             if (now.getHours() === 6 && now.getMinutes() === 0) {
@@ -476,7 +485,6 @@
             }
         }, 60000);
 
-        // Sehri & Iftar Alert Logic
         function enableSehriIftarAlert() {
             if (window.Notification && Notification.permission !== "denied") {
                 Notification.requestPermission().then(permission => {
@@ -492,7 +500,6 @@
             }
         }
 
-        // Azan Alert Logic
         function enableAzanAlert() {
             if (window.Notification && Notification.permission !== "denied") {
                 Notification.requestPermission().then(permission => {
