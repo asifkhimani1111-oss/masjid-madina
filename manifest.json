@@ -1,1 +1,17 @@
+{
+  "name": "મદીના મસ્જિદ - Noor-e-Madni",
+  "short_name": "મદીના મસ્જિદ",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#062314",
+  "theme_color": "#0b3c24",
+  "icons": [
+    {
+      "src": "1000020941.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
 
