@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noor-e-Madni - શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</title>
+    <title>મદીના મસ્જિદ - Noor-e-Madni</title>
+    <!-- PWA Manifest & Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/jpeg" href="1000020941.jpg">
+    <link rel="apple-touch-icon" href="1000020941.jpg">
     <style>
         :root {
             --primary-color: #0b3c24;
@@ -11,7 +15,7 @@
             --accent-color: #d4af37;
             --bg-color: #062314;
             --text-color: #ffffff;
-            --card-bg: #0e4d2b;
+            --card-bg: rgba(14, 77, 43, 0.92);
         }
 
         * {
@@ -22,7 +26,11 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            /* Background set to Masjid Inside Photo (1000020942.jpg) with dark green gradient overlay */
+            background: linear-gradient(rgba(6, 35, 20, 0.9), rgba(6, 35, 20, 0.95)), url('1000020942.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-color);
             padding: 15px;
             display: flex;
@@ -45,15 +53,14 @@
             margin-bottom: 10px;
         }
 
-        .logo-text {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            border: 2px dashed var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 30px;
-            display: inline-block;
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
             margin-bottom: 12px;
-            background: rgba(212, 175, 55, 0.05);
         }
 
         h1 {
@@ -84,7 +91,7 @@
         }
 
         .live-dateTime-box {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--accent-color);
             border-radius: 12px;
             padding: 12px;
@@ -117,7 +124,8 @@
             border: 1px solid var(--accent-color);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
         }
 
         .card-title {
@@ -176,7 +184,7 @@
 
         .form-control-file {
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             border: 1px dashed var(--accent-color);
             padding: 10px;
             border-radius: 8px;
@@ -243,7 +251,7 @@
         }
 
         .sehri-iftar-box {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             padding: 12px;
             margin-bottom: 15px;
@@ -278,7 +286,7 @@
             text-align: center;
             font-weight: bold;
             margin: 15px 0;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             padding: 10px;
         }
@@ -311,10 +319,10 @@
 <body>
 
     <div class="container">
-        <!-- Header Section with Live Clock & Dates -->
+        <!-- Header Section with Masjid Gate Logo, Clock & Dates -->
         <header>
-            <div class="logo-text">✨ Noor-e-Madni Logo ✨</div>
-            <h1>Noor-e-Madni</h1>
+            <img src="1000020941.jpg" alt="મદીના મસ્જિદ Logo" class="logo-img">
+            <h1>મદીના મસ્જિદ</h1>
             <p class="subtitle">શાને પીર ઓ મુરશિદ Hazrat Madni Miyan</p>
             
             <div class="creator-badge">⭐ Noor-e-Madni is Asif Khimani's Product ⭐</div>
@@ -333,17 +341,14 @@
             <div class="card-title">🎨 કસ્ટમ સ્ટેટસ / પોસ્ટ સ્ટુડિયો</div>
             <p class="card-content">તમારો પોતાનો ફોટો (ગેલેરી/કેમેરાથી) અપલોડ કરો અને સુવિચાર સાથે સુંદર સ્ટેટસ બનાવો:</p>
             
-            <!-- Preview Box -->
-            <div class="studio-preview" id="studioPreview">
+            <div class="studio-preview" id="studioPreview" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('1000020942.jpg');">
                 <div class="studio-text" id="studioText">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ છે."</div>
-                <div class="studio-brand">✨ Noor-e-Madni is Asif Khimani's Product ✨</div>
+                <div class="studio-brand">✨ મદીના મસ્જિદ | Noor-e-Madni is Asif Khimani's Product ✨</div>
             </div>
 
-            <!-- Upload Custom Image -->
             <label style="font-size: 0.85rem; color: var(--accent-color); margin-bottom: 4px; display: block;">📷 ફોટો પસંદ કરો (ગેલેરી/કેમેરા):</label>
             <input type="file" id="imageLoader" accept="image/*" class="form-control-file">
 
-            <!-- Custom Quote Input -->
             <textarea id="customQuoteInput" class="form-control-file" rows="2" style="resize: none;" placeholder="તમારો પોતાનો સુવિચાર અહીં લખો...">"મુહબ્બતે રસૂલ (સ.અ.વ.) અને સાચો ઇસ્લામી અકીદો જ આપણી સાચી ઓળખ છે."</textarea>
 
             <a href="#" id="whatsappShareBtn" target="_blank" class="btn whatsapp-btn">💬 ટેક્સ્ટ સાથે WhatsApp પર શેર કરો</a>
@@ -458,12 +463,11 @@
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Noor-e-Madni. All Rights Reserved.<br><strong>Noor-e-Madni is Asif Khimani's Product</strong><br>Designed with ❤️ for Asif Khimani</p>
+            <p>&copy; 2026 મદીના મસ્જિદ. All Rights Reserved.<br><strong>Noor-e-Madni is Asif Khimani's Product</strong><br>Designed with ❤️ for Asif Khimani</p>
         </footer>
     </div>
 
     <script>
-        // PWA Install Prompt
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
 
@@ -482,7 +486,6 @@
             }
         });
 
-        // Image Upload Customizer Logic
         const imageLoader = document.getElementById('imageLoader');
         imageLoader.addEventListener('change', function(e) {
             let reader = new FileReader();
@@ -492,13 +495,12 @@
             reader.readAsDataURL(e.target.files[0]);
         });
 
-        // Custom Quote Live Typing Sync
         const customQuoteInput = document.getElementById('customQuoteInput');
         customQuoteInput.addEventListener('input', function() {
             let text = this.value;
             document.getElementById('studioText').innerText = text;
             
-            let shareText = `✨ આજનો ઇસ્લામિક સુવિચાર ✨\n\n${text}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
+            let shareText = `✨ મદીના મસ્જિદ - આજનો ઇસ્લામિક સુવિચાર ✨\n\n${text}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
             let shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
             document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
         });
@@ -563,9 +565,8 @@
             let selectedQuote = islamicQuotes[quoteIndex];
             document.getElementById('dailyQuote').innerText = selectedQuote;
 
-            // Initial WhatsApp link setup if custom textarea is untouched
             if(customQuoteInput.value === '') {
-                let shareText = `✨ આજનો ઇસ્લામિક સુવિચાર ✨\n\n${selectedQuote}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
+                let shareText = `✨ મદીના મસ્જિદ - આજનો ઇસ્લામિક સુવિચાર ✨\n\n${selectedQuote}\n\n━━━━━━━━━━━━━\n📱 Noor-e-Madni is Asif Khimani's Product`;
                 let shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
                 document.getElementById('whatsappShareBtn').setAttribute('href', shareUrl);
             }
@@ -588,7 +589,7 @@
             let now = new Date();
             if (now.getHours() === 6 && now.getMinutes() === 0) {
                 if (window.Notification && Notification.permission === "granted") {
-                    new Notification("Noor-e-Madni - સુબ્હ બખૈર", { body: "સવારના 6 વાગી ગયા છે. સૂરે યાસીન શરીફ સાંભળવા માટે એપ ઓપન કરો." });
+                    new Notification("મદીના મસ્જિદ - સુબ્હ બખૈર", { body: "સવારના 6 વાગી ગયા છે. સૂરે યાસીન શરીફ સાંભળવા માટે એપ ઓપન કરો." });
                 }
             }
         }, 60000);
@@ -598,7 +599,7 @@
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
                         alert("જઝાકલ્લાહ! સેહરી અને ઇફ્તારની નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
-                        new Notification("Noor-e-Madni - સેહરી એલર્ટ", { body: "સેહરીનો સમય થઈ રહ્યો છે. નિયત કરી લો..." });
+                        new Notification("મદીના મસ્જિદ - સેહરી એલર્ટ", { body: "સેહરીનો સમય થઈ રહ્યો છે. નિયત કરી લો..." });
                     } else {
                         alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
                     }
@@ -613,7 +614,7 @@
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
                         alert("જઝાકલ્લાહ! નમાઝના સમયની અઝાન નોટિફિકેશન સક્રિય થઈ ગઈ છે.");
-                        new Notification("Noor-e-Madni", { body: "નમાઝના સમય માટે અઝાન એલર્ટ સેટ છે." });
+                        new Notification("મદીના મસ્જિદ", { body: "નમાઝના સમય માટે અઝાન એલર્ટ સેટ છે." });
                     } else {
                         alert("કૃપા કરીને બ્રાઉઝર સેટિંગ્સમાંથી નોટિફિકેશનની પરવાનગી આપો.");
                     }
