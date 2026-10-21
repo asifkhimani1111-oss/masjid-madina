@@ -4,187 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>મસ્જિદ એ મદીના - ગાઢા</title>
-    <!-- હોમ સ્ક્રીન આઈકન સેટિંગ -->
-    <link rel="icon" href="gate.jpg">
-    <link rel="apple-touch-icon" href="gate.jpg">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        img.masjid-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        h1 {
-            color: #007f5f;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .quote-box {
-            background: #e9f5ed;
-            border-left: 5px solid #2b9348;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #1b4332;
-        }
-        .share-btn {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .share-btn:active {
-            background-color: #1ebe5d;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>મસ્જિદ એ મદીના</h1>
-        <p>શાંતિ અને નૂરનું પ્રતિક</p>
-        
-        <!-- મસ્જિદનો ફોટો -->
-        <img src="gate.jpg" alt="Masjid Gate" class="masjid-img" id="masjidImage">
-
-        <!-- રોજના સુવિચાર માટેનું બોક્સ -->
-        <div class="quote-box" id="dailyQuote">
-            લોડ થઈ રહ્યું છે...
-        </div>
-
-        <!-- WhatsApp પર ફોટા અને સુવિચાર સાથે શેર કરવાનું બટન -->
-        <button class="share-btn" onclick="shareOnWhatsApp()">📲 WhatsApp પર સ્ટેટસ શેર કરો</button>
-    </div>
-
-    <script>
-        // રોજના ઇસ્લામિક સુવિચારોની યાદી
-        const islamicQuotes = [
-            "જ્યારે અલ્લાહ પર ભરોસો હોય, તો નામુમિન પણ મુમિન બની જાય છે.",
-            "નેક કામ કરો, ભલે તે કેટલું પણ નાનું કેમ ન હોય.",
-            "સબર અને શુક્ર એ મુસલમાનની સૌથી મોટી તાકાત છે.",
-            "દુઆ એ હથિયાર છે જે નસીબ પણ બદલી નાખે છે.",
-            "માતા-પિતાની સેવા એ જ સાચી ઇબાદત છે.",
-            "સત્ય અને ઈમાનદારીથી જીવવું એ જ સુખી જીવનની ચાવી છે.",
-            "ગરીબો અને જરૂરિયાતમંદોની મદદ કરવી એ અલ્લાહને સૌથી વધુ વ્હાલી છે."
-        ];
-
-        // વર્ષનો દિવસ ગણીને રોજના હિસાબે સુવિચાર બદલવાની સિસ્ટમ
-        function setDailyQuote() {
-            const now = new Date();
-            const start = new Date(now.getFullYear(), 0, 0);
-            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-            const oneDay = 1000 * 60 * 60 * 24;
-            const dayOfYear = Math.floor(diff / oneDay);
-            
-            const quoteIndex = dayOfYear % islamicQuotes.length;
-            document.getElementById("dailyQuote").innerText = islamicQuotes[quoteIndex];
-        }
-
-        // WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
-        async function shareOnWhatsApp() {
-            const quoteText = document.getElementById("dailyQuote").innerText;
-            const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
-
-            if (navigator.share) {
-                try {
-                    // જો ફોટો ઉપલબ્ધ હોય તો ફોટો અને લખાણ બંને સાથે મોકલવાનો પ્રયત્ન કરશે
-                    const response = await fetch('gate.jpg');
-                    const blob = await response.blob();
-                    const file = new File([blob], 'gate.jpg', { type: blob.type });
-
-                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        await navigator.share({
-                            title: 'મસ્જિદ સુવિચાર',
-                            text: shareText,
-                            files: [file]
-                        });
-                        return;
-                    }
-                } catch (e) {
-                    console.log("ફાઇલ શેરિંગ સપોર્ટ નથી કરતું, માત્ર ટેક્સ્ટ શેર થશે.");
-                }
-
-                // જો ફાઇલ શેર ન થાય તો માત્ર ટેક્સ્ટ અને લિંક શેર કરશે
-                try {
-                    await navigator.share({
-                        title: 'મસ્જિદ સુવિચાર',
-                        text: shareText
-                    });
-                } catch (err) {
-                    console.log('શેર કેન્સલ થયું.');
-                }
-            } else {
-                // ડેસ્કટોપ કે બ્રાઉઝર માટે ડાયરેક્ટ WhatsApp લિંક
-                const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
-                window.open(whatsappUrl, '_blank');
-            }
-        }
-
-        // પેજ લોડ થતા જ સુવિચાર સેટ થઈ જશે
-        window.onload = setDailyQuote;
-    </script>
-</body>
-</html>
-// WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
-async function shareOnWhatsApp() {
-    const quoteText = document.getElementById("dailyQuote").innerText;
-    const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
-
-    if (navigator.share) {
-        try {
-            const response = await fetch('gate.jpg');
-            const blob = await response.blob();
-            const file = new File([blob], 'gate.jpg', { type: blob.type });
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    title: 'મસ્જિદ સુવિચાર',
-                    text: shareText,
-                    files: [file]
-                });
-                return;
-            }
-        } catch (e) {
-            console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
-        }
-    }
-
-    const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
-    window.open(whatsappUrl, '_blank');
-}
-<!DOCTYPE html>
-<html lang="gu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>મસ્જિદ એ મદીના - ગાઢા</title>
-    <!-- હોમ સ્ક્રીન આઈકન સેટિંગ -->
     <link rel="icon" href="gate.jpg">
     <link rel="apple-touch-icon" href="gate.jpg">
     <style>
@@ -282,19 +101,15 @@ async function shareOnWhatsApp() {
         <h1>🕌 મસ્જિદ એ મદીના</h1>
         <p>શાંતિ અને નૂરનું પ્રતિક</p>
         
-        <!-- મસ્જિદનો ફોટો -->
         <img src="gate.jpg" alt="Masjid Gate" class="masjid-img">
 
-        <!-- રોજના સુવિચાર માટેનું બોક્સ -->
         <div class="quote-box" id="dailyQuote">
             સુવિચાર લોડ થઈ રહ્યો છે...
         </div>
 
-        <!-- WhatsApp પર સ્ટેટસ શેર કરવાનું બટન -->
         <button class="share-btn" onclick="shareOnWhatsApp()">📲 WhatsApp પર સ્ટેટસ શેર કરો</button>
     </div>
 
-    <!-- ડિજિટલ તસ્બીહ કાઉન્ટર (વાઇબ્રેટ સાથે) -->
     <div class="container">
         <h2>📿 ડિજિટલ તસ્બીહ કાઉન્ટર</h2>
         <div class="section-box">
@@ -304,7 +119,6 @@ async function shareOnWhatsApp() {
         </div>
     </div>
 
-    <!-- તમારી ત્રણેય ચેનલો -->
     <div class="container">
         <h2>📢 મસ્જિદની ઓફિશિયલ ચેનલ્સ</h2>
         <div class="section-box channel-links">
@@ -314,7 +128,6 @@ async function shareOnWhatsApp() {
         </div>
     </div>
 
-    <!-- બધી સ્ક્રિપ્ટ અહીં વ્યવસ્થિત મૂકેલી છે -->
     <script>
         const islamicQuotes = [
             "જ્યારે અલ્લાહ પર ભરોસો હોય, તો નામુમિન પણ મુમિન બની જાય છે.",
