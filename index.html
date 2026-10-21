@@ -13,17 +13,16 @@
             background-color: #f4f7f6;
             color: #333;
             margin: 0;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
         }
         .container {
             max-width: 500px;
             margin: 0 auto;
             background: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
         }
         img.masjid-img {
             width: 100%;
@@ -34,19 +33,18 @@
         }
         h1 {
             color: #007f5f;
-            font-size: 22px;
-            margin-bottom: 5px;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
         .quote-box {
             background: #e9f5ed;
             border-left: 5px solid #2b9348;
-            padding: 12px;
-            margin: 15px 0;
+            padding: 15px;
+            margin: 20px 0;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             color: #1b4332;
-            text-align: left;
         }
         .share-btn {
             background-color: #25D366;
@@ -61,77 +59,27 @@
             margin-top: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .section-box {
-            background: #e9f5ed;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 8px;
-        }
-        .tasbih-count {
-            font-size: 36px;
-            color: #007f5f;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .tasbih-btn {
-            background-color: #007f5f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .channel-links a {
-            display: block;
-            background: #2b9348;
-            color: white;
-            padding: 12px;
-            margin: 10px 0;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+        .share-btn:active {
+            background-color: #1ebe5d;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🕌 મસ્જિદ એ મદીના</h1>
-        <p>શાંતિ અને નૂરનું પ્રતિક - ગાઢા</p>
+        <h1>મસ્જિદ એ મદીના</h1>
+        <p>શાંતિ અને નૂરનું પ્રતિક</p>
         
-        <!-- મસ્જિદનો ફોટો (સાચો પાથ) -->
-        <img src="gate.jpg" alt="Masjid Gate" class="masjid-img">
+        <!-- મસ્જિદનો ફોટો -->
+        <img src="gate.jpg" alt="Masjid Gate" class="masjid-img" id="masjidImage">
 
         <!-- રોજના સુવિચાર માટેનું બોક્સ -->
         <div class="quote-box" id="dailyQuote">
-            સુવિચાર લોડ થઈ રહ્યો છે...
+            લોડ થઈ રહ્યું છે...
         </div>
 
-        <!-- WhatsApp પર સ્ટેટસ શેર કરવાનું બટન -->
+        <!-- WhatsApp પર ફોટા અને સુવિચાર સાથે શેર કરવાનું બટન -->
         <button class="share-btn" onclick="shareOnWhatsApp()">📲 WhatsApp પર સ્ટેટસ શેર કરો</button>
-    </div>
-
-    <!-- ડિજિટલ તસ્બીહ કાઉન્ટર (વાઇબ્રેટ સાથે) -->
-    <div class="container">
-        <h2>📿 ડિજિટલ તસ્બીહ કાઉન્ટર</h2>
-        <div class="section-box">
-            <div class="tasbih-count" id="countDisplay">0</div>
-            <button class="tasbih-btn" onclick="countTasbih()">ગણો (Count)</button>
-            <button class="tasbih-btn" onclick="resetTasbih()" style="background-color: #cc4444;">રીસેટ</button>
-        </div>
-    </div>
-
-    <!-- તમારી ત્રણેય ચેનલો -->
-    <div class="container">
-        <h2>📢 મસ્જિદની ઓફિશિયલ ચેનલ્સ</h2>
-        <div class="section-box channel-links">
-            <a href="#" target="_blank">📱 મધની ચેનલ (Madani Channel)</a>
-            <a href="#" target="_blank">📱 એસડી ચેનલ (SD Channel)</a>
-            <a href="#" target="_blank">📱 શ્રફી ચેનલ (Shrafi Channel)</a>
-        </div>
     </div>
 
     <script>
@@ -146,7 +94,7 @@
             "ગરીબો અને જરૂરિયાતમંદોની મદદ કરવી એ અલ્લાહને સૌથી વધુ વ્હાલી છે."
         ];
 
-        // પેજ ખુલે એટલે તરત જ સુવિચાર સેટ થઈ જાય એવું ફંક્શન
+        // વર્ષનો દિવસ ગણીને રોજના હિસાબે સુવિચાર બદલવાની સિસ્ટમ
         function setDailyQuote() {
             const now = new Date();
             const start = new Date(now.getFullYear(), 0, 0);
@@ -155,20 +103,17 @@
             const dayOfYear = Math.floor(diff / oneDay);
             
             const quoteIndex = dayOfYear % islamicQuotes.length;
-            const quoteElement = document.getElementById("dailyQuote");
-            if(quoteElement) {
-                quoteElement.innerText = islamicQuotes[quoteIndex];
-            }
+            document.getElementById("dailyQuote").innerText = islamicQuotes[quoteIndex];
         }
 
-        // WhatsApp પર સ્ટેટસ અને શેર કરવા માટેનું ફંક્શન
+        // WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
         async function shareOnWhatsApp() {
-            const quoteElement = document.getElementById("dailyQuote");
-            const quoteText = quoteElement ? quoteElement.innerText : "મસ્જિદ એ મદીના સુવિચાર";
-            const shareText = "🕌 મસ્જિદ એ મદીના - ગાઢા\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટની મુલાકાત લો.";
+            const quoteText = document.getElementById("dailyQuote").innerText;
+            const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
 
             if (navigator.share) {
                 try {
+                    // જો ફોટો ઉપલબ્ધ હોય તો ફોટો અને લખાણ બંને સાથે મોકલવાનો પ્રયત્ન કરશે
                     const response = await fetch('gate.jpg');
                     const blob = await response.blob();
                     const file = new File([blob], 'gate.jpg', { type: blob.type });
@@ -182,40 +127,27 @@
                         return;
                     }
                 } catch (e) {
-                    console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
+                    console.log("ફાઇલ શેરિંગ સપોર્ટ નથી કરતું, માત્ર ટેક્સ્ટ શેર થશે.");
                 }
-            }
 
-            const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // તસ્બીહ કાઉન્ટર અને વાઇબ્રેટ સિસ્ટમ
-        let tasbihCount = 0;
-        function countTasbih() {
-            tasbihCount++;
-            const display = document.getElementById("countDisplay");
-            if(display) {
-                display.innerText = tasbihCount;
-            }
-            if ("vibrate" in navigator) {
-                navigator.vibrate(50); 
-            }
-        }
-
-        function resetTasbih() {
-            tasbihCount = 0;
-            const display = document.getElementById("countDisplay");
-            if(display) {
-                display.innerText = tasbihCount;
-            }
-            if ("vibrate" in navigator) {
-                navigator.vibrate(100);
+                // જો ફાઇલ શેર ન થાય તો માત્ર ટેક્સ્ટ અને લિંક શેર કરશે
+                try {
+                    await navigator.share({
+                        title: 'મસ્જિદ સુવિચાર',
+                        text: shareText
+                    });
+                } catch (err) {
+                    console.log('શેર કેન્સલ થયું.');
+                }
+            } else {
+                // ડેસ્કટોપ કે બ્રાઉઝર માટે ડાયરેક્ટ WhatsApp લિંક
+                const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
+                window.open(whatsappUrl, '_blank');
             }
         }
 
-        // તરત જ સુવિચાર ચાલુ થઈ જાય
-        setDailyQuote();
+        // પેજ લોડ થતા જ સુવિચાર સેટ થઈ જશે
+        window.onload = setDailyQuote;
     </script>
 </body>
 </html>
