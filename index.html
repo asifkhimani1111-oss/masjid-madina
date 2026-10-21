@@ -95,12 +95,34 @@
         ];
 
         // વર્ષનો દિવસ ગણીને રોજના હિસાબે સુવિચાર બદલવાની સિસ્ટમ
-        function setDailyQuote() {
-            const now = new Date();
-            const start = new Date(now.getFullYear(), 0, 0);
-            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
-            const oneDay = 1000 * 60 * 60 * 24;
-            const dayOfYear = Math.floor(diff / oneDay);
+        // WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
+async function shareOnWhatsApp() {
+    const quoteText = document.getElementById("dailyQuote").innerText;
+    const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
+
+    if (navigator.share) {
+        try {
+            const response = await fetch('gate.jpg');
+            const blob = await response.blob();
+            const file = new File([blob], 'gate.jpg', { type: blob.type });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    title: 'મસ્જિદ સુવિચાર',
+                    text: shareText,
+                    files: [file]
+                });
+                return;
+            }
+        } catch (e) {
+            console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
+        }
+    }
+
+    const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
+    window.open(whatsappUrl, '_blank');
+}
+
             
             const quoteIndex = dayOfYear % islamicQuotes.length;
             document.getElementById("dailyQuote").innerText = islamicQuotes[quoteIndex];
@@ -150,30 +172,4 @@
         window.onload = setDailyQuote;
     </script>
 </body>
-</html>// WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
-async function shareOnWhatsApp() {
-    const quoteText = document.getElementById("dailyQuote").innerText;
-    const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
-
-    if (navigator.share) {
-        try {
-            const response = await fetch('gate.jpg');
-            const blob = await response.blob();
-            const file = new File([blob], 'gate.jpg', { type: blob.type });
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    title: 'મસ્જિદ સુવિચાર',
-                    text: shareText,
-                    files: [file]
-                });
-                return;
-            }
-        } catch (e) {
-            console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
-        }
-    }
-
-    const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
-    window.open(whatsappUrl, '_blank');
-}
+</html>
