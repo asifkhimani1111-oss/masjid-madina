@@ -178,3 +178,220 @@ async function shareOnWhatsApp() {
     const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
     window.open(whatsappUrl, '_blank');
 }
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>મસ્જિદ એ મદીના - ગાઢા</title>
+    <!-- હોમ સ્ક્રીન આઈકન સેટિંગ -->
+    <link rel="icon" href="gate.jpg">
+    <link rel="apple-touch-icon" href="gate.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        img.masjid-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: #007f5f;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .quote-box {
+            background: #e9f5ed;
+            border-left: 5px solid #2b9348;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1b4332;
+            text-align: left;
+        }
+        .share-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .section-box {
+            background: #e9f5ed;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .tasbih-count {
+            font-size: 36px;
+            color: #007f5f;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .tasbih-btn {
+            background-color: #007f5f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .channel-links a {
+            display: block;
+            background: #2b9348;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🕌 મસ્જિદ એ મદીના</h1>
+        <p>શાંતિ અને નૂરનું પ્રતિક</p>
+        
+        <!-- મસ્જિદનો ફોટો -->
+        <img src="gate.jpg" alt="Masjid Gate" class="masjid-img">
+
+        <!-- રોજના સુવિચાર માટેનું બોક્સ -->
+        <div class="quote-box" id="dailyQuote">
+            સુવિચાર લોડ થઈ રહ્યો છે...
+        </div>
+
+        <!-- WhatsApp પર સ્ટેટસ શેર કરવાનું બટન -->
+        <button class="share-btn" onclick="shareOnWhatsApp()">📲 WhatsApp પર સ્ટેટસ શેર કરો</button>
+    </div>
+
+    <!-- ડિજિટલ તસ્બીહ કાઉન્ટર (વાઇબ્રેટ સાથે) -->
+    <div class="container">
+        <h2>📿 ડિજિટલ તસ્બીહ કાઉન્ટર</h2>
+        <div class="section-box">
+            <div class="tasbih-count" id="countDisplay">0</div>
+            <button class="tasbih-btn" onclick="countTasbih()">ગણો (Count)</button>
+            <button class="tasbih-btn" onclick="resetTasbih()" style="background-color: #cc4444;">રીસેટ</button>
+        </div>
+    </div>
+
+    <!-- તમારી ત્રણેય ચેનલો -->
+    <div class="container">
+        <h2>📢 મસ્જિદની ઓફિશિયલ ચેનલ્સ</h2>
+        <div class="section-box channel-links">
+            <a href="#" target="_blank">📱 મધની ચેનલ (Madani Channel)</a>
+            <a href="#" target="_blank">📱 એસડી ચેનલ (SD Channel)</a>
+            <a href="#" target="_blank">📱 શ્રફી ચેનલ (Shrafi Channel)</a>
+        </div>
+    </div>
+
+    <!-- બધી સ્ક્રિપ્ટ અહીં વ્યવસ્થિત મૂકેલી છે -->
+    <script>
+        const islamicQuotes = [
+            "જ્યારે અલ્લાહ પર ભરોસો હોય, તો નામુમિન પણ મુમિન બની જાય છે.",
+            "નેક કામ કરો, ભલે તે કેટલું પણ નાનું કેમ ન હોય.",
+            "સબર અને શુક્ર એ મુસલમાનની સૌથી મોટી તાકાત છે.",
+            "દુઆ એ હથિયાર છે જે નસીબ પણ બદલી નાખે છે.",
+            "માતા-પિતાની સેવા એ જ સાચી ઇબાદત છે.",
+            "સત્ય અને ઈમાનદારીથી જીવવું એ જ સુખી જીવનની ચાવી છે.",
+            "ગરીબો અને જરૂરિયાતમંદોની મદદ કરવી એ અલ્લાહને સૌથી વધુ વ્હાલી છે."
+        ];
+
+        function setDailyQuote() {
+            const now = new Date();
+            const start = new Date(now.getFullYear(), 0, 0);
+            const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+            
+            const quoteIndex = dayOfYear % islamicQuotes.length;
+            const quoteElement = document.getElementById("dailyQuote");
+            if(quoteElement) {
+                quoteElement.innerText = islamicQuotes[quoteIndex];
+            }
+        }
+
+        async function shareOnWhatsApp() {
+            const quoteElement = document.getElementById("dailyQuote");
+            const quoteText = quoteElement ? quoteElement.innerText : "મસ્જિદ એ મદીના સુવિચાર";
+            const shareText = "🕌 મસ્જિદ એ મદીના - ગાઢા\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટની મુલાકાત લો.";
+
+            if (navigator.share) {
+                try {
+                    const response = await fetch('gate.jpg');
+                    const blob = await response.blob();
+                    const file = new File([blob], 'gate.jpg', { type: blob.type });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            title: 'મસ્જિદ સુવિચાર',
+                            text: shareText,
+                            files: [file]
+                        });
+                        return;
+                    }
+                } catch (e) {
+                    console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
+                }
+            }
+
+            const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
+            window.open(whatsappUrl, '_blank');
+        }
+
+        let tasbihCount = 0;
+        function countTasbih() {
+            tasbihCount++;
+            const display = document.getElementById("countDisplay");
+            if(display) {
+                display.innerText = tasbihCount;
+            }
+            if ("vibrate" in navigator) {
+                navigator.vibrate(50); 
+            }
+        }
+
+        function resetTasbih() {
+            tasbihCount = 0;
+            const display = document.getElementById("countDisplay");
+            if(display) {
+                display.innerText = tasbihCount;
+            }
+            if ("vibrate" in navigator) {
+                navigator.vibrate(100);
+            }
+        }
+
+        setDailyQuote();
+    </script>
+</body>
+</html>
