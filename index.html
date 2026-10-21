@@ -151,3 +151,30 @@
     </script>
 </body>
 </html>
+// WhatsApp પર ફોટો અને સુવિચાર સાથે શેર કરવાનું ફંક્શન
+async function shareOnWhatsApp() {
+    const quoteText = document.getElementById("dailyQuote").innerText;
+    const shareText = "🕌 મસ્જિદ એ મદીના - આજનો સુવિચાર:\n\n\"" + quoteText + "\"\n\nઅમારી વેબસાઇટ મુલાકાત લો.";
+
+    if (navigator.share) {
+        try {
+            const response = await fetch('gate.jpg');
+            const blob = await response.blob();
+            const file = new File([blob], 'gate.jpg', { type: blob.type });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    title: 'મસ્જિદ સુવિચાર',
+                    text: shareText,
+                    files: [file]
+                });
+                return;
+            }
+        } catch (e) {
+            console.log("ફાઇલ શેરિંગ સપોર્ટ નથી.");
+        }
+    }
+
+    const whatsappUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText);
+    window.open(whatsappUrl, '_blank');
+}
