@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#073d27">
+<meta name="description" content="MADANI SUVICHAR - इस्लामी सुविचार और अच्छी बातें">
+<title>MADANI SUVICHAR</title>
+<link rel="manifest" href="manifest.json">
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f1f6f1;
+ color:#173b2c;
+}
+header{
+ background:#073d27;
+ color:white;
+ text-align:center;
+ padding:22px 10px;
+}
+header h1{margin:0;font-size:27px}
+header p{margin:7px 0 0;color:#ffe28a}
+.container{max-width:650px;margin:auto;padding:14px}
+.card{
+ background:white;
+ border-radius:16px;
+ padding:18px;
+ margin:14px 0;
+ box-shadow:0 3px 12px #00000012;
+}
+h2{color:#087448;font-size:20px}
+.quote{
+ background:#073d27;
+ color:#ffe28a;
+ padding:28px 18px;
+ border-radius:15px;
+ text-align:center;
+ font-size:23px;
+ line-height:1.8;
+ min-height:130px;
+}
+button{
+ border:0;
+ border-radius:10px;
+ padding:12px 17px;
+ background:#087448;
+ color:white;
+ font-size:16px;
+ margin:5px 2px;
+ cursor:pointer;
+}
+button.secondary{background:#d9eee2;color:#073d27}
+input,textarea{
+ width:100%;
+ padding:12px;
+ border:1px solid #b9cdbf;
+ border-radius:9px;
+ margin:7px 0 13px;
+ font-size:16px;
+}
+textarea{min-height:110px;resize:vertical}
+label{font-weight:bold}
+#preview{
+ width:100%;
+ display:block;
+ border-radius:12px;
+ margin-top:12px;
+ background:#073d27;
+}
+footer{text-align:center;padding:20px;color:#547362}
+</style>
+</head>
+
+<body>
+
+<header>
+ <h1>🌙 MADANI SUVICHAR</h1>
+ <p>मदनी सुविचार</p>
+ <p>इस्लामी ज्ञान • अमल • इबादत</p>
+</header>
+
+<div class="container">
+
+ <section class="card">
+  <h2>🌙 आज का सुविचार</h2>
+  <div class="quote" id="dailyQuote"></div>
+  <button onclick="nextQuote()">अगला सुविचार</button>
+  <button class="secondary" onclick="shareDaily()">शेयर करें</button>
+ </section>
+
+ <section class="card">
+  <h2>✍️ अपना सुविचार लिखें</h2>
+
+  <label>आपका नाम</label>
+  <input id="personName" placeholder="अपना नाम लिखें">
+
+  <label>अपना सुविचार लिखें</label>
+  <textarea id="myQuote" placeholder="यहाँ अपना सुविचार लिखें..."></textarea>
+
+  <label>अपनी फोटो चुनें</label>
+  <input type="file" id="photoInput" accept="image/*">
+
+  <button onclick="makeStatus()">✨ सुंदर Status बनाएं</button>
+
+  <canvas id="preview" width="720" height="900"></canvas>
+
+  <button onclick="downloadStatus()">📥 फोटो सेव करें</button>
+  <button onclick="shareStatus()">WhatsApp पर शेयर करें</button>
+ </section>
+
+ <section class="card">
+  <h2>🤲 छोटी सी दुआ</h2>
+  <p>ऐ अल्लाह! हमें नेक अमल करने और दूसरों के साथ भलाई करने की तौफीक अता फरमा। आमीन।</p>
+ </section>
+
+</div>
+
+<footer>
+ MADANI SUVICHAR 🌙
+</footer>
+
+<script>
+const quotes=[
+"अल्लाह पर भरोसा रखो, वह सबसे बेहतर मददगार है।",
+"नमाज़ दिल को सुकून देती है।",
+"अच्छी बात कहना भी एक नेकी है।",
+"सब्र करने वालों के साथ अल्लाह है।",
+"दूसरों के लिए वही पसंद करो जो अपने लिए पसंद करते हो।",
+"माता-पिता की इज्जत करना बहुत बड़ी नेकी है।",
+"हर हाल में अल्लाह का शुक्र अदा करो।",
+"मुस्कुराकर मिलना भी एक अच्छी आदत है।",
+"सच्चाई इंसान की सबसे अच्छी पहचान है।",
+"अच्छे अखलाक इंसान की खूबसूरती हैं।",
+"दुआ कभी बेकार नहीं जाती।",
+"इल्म हासिल करना जिंदगी को रोशन करता है।"
+];
+
+let current=0;
+let selectedPhoto=null;
+let finalBlob=null;
+
+function getTodayIndex(){
+ const parts=new Intl.DateTimeFormat("en-GB",{
+  timeZone:"Asia/Kolkata",
+  year:"numeric",month:"2-digit",day:"2-digit"
+ }).formatToParts(new Date());
+
+ const obj={};
+ parts.forEach(p=>obj[p.type]=p.value);
+ const key=Number(obj.year+obj.month+obj.day);
+ return key%quotes.length;
+}
+
+function showQuote(){
+ document.getElementById("dailyQuote").textContent=
+ quotes[getTodayIndex()];
+}
+
+function nextQuote(){
+ current=(current+1)%quotes.length;
+ document.getElementById("dailyQuote").textContent=quotes[current];
+}
+
+function shareDaily(){
+ const text=document.getElementById("dailyQuote").textContent+
+ "\n\n🌙 MADANI SUVICHAR";
+ if(navigator.share){
+  navigator.share({title:"MADANI SUVICHAR",text:text}).catch(()=>{});
+ }else{
+  copyText(text);
+ }
+}
+
+function copyText(text){
+ if(navigator.clipboard){
+  navigator.clipboard.writeText(text)
+  .then(()=>alert("कॉपी हो गया"))
+  .catch(()=>alert(text));
+ }else{
+  alert(text);
+ }
+}
+
+document.getElementById("photoInput").addEventListener("change",function(e){
+ const file=e.target.files[0];
+ if(!file)return;
+
+ if(!file.type.startsWith("image/")){
+  alert("कृपया फोटो चुनें");
+  return;
+ }
+
+ const reader=new FileReader();
+ reader.onload=function(){
+  const img=new Image();
+  img.onload=function(){
+   selectedPhoto=img;
+   alert("फोटो चुन ली गई है");
+  };
+  img.src=reader.result;
+ };
+ reader.readAsDataURL(file);
+});
+
+function makeStatus(){
+ const quote=document.getElementById("myQuote").value.trim();
+ const name=document.getElementById("personName").value.trim();
+
+ if(!quote){
+  alert("पहले अपना सुविचार लिखें");
+  return;
+ }
+
+ const canvas=document.getElementById("preview");
+ const ctx=canvas.getContext("2d");
+ const w=canvas.width,h=canvas.height;
+
+ ctx.fillStyle="#073d27";
+ ctx.fillRect(0,0,w,h);
+
+ if(selectedPhoto){
+  const scale=Math.max(w/selectedPhoto.width,430/selectedPhoto.height);
+  const iw=selectedPhoto.width*scale;
+  const ih=selectedPhoto.height*scale;
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0,0,w,430);
+  ctx.clip();
+  ctx.drawImage(selectedPhoto,(w-iw)/2,(430-ih)/2,iw,ih);
+  ctx.restore();
+ }else{
+  ctx.fillStyle="#087448";
+  ctx.beginPath();
+  ctx.arc(360,215,125,0,Math.PI*2);
+  ctx.fill();
+  ctx.fillStyle="#ffe28a";
+  ctx.font="100px Arial";
+  ctx.textAlign="center";
+  ctx.fillText("☪",360,250);
+ }
+
+ ctx.fillStyle="#ffe28a";
+ ctx.textAlign="center";
+ ctx.font="bold 34px Arial";
+ ctx.fillText("🌙 MADANI SUVICHAR",360,485);
+
+ ctx.fillStyle="white";
+ ctx.font="bold 35px Arial";
+
+ const words=quote.split(/\s+/);
+ let lines=[],line="";
+ words.forEach(word=>{
+  const test=line?line+" "+word:word;
+  if(ctx.measureText(test).width>620 && line){
+   lines.push(line);
+   line=word;
+  }else line=test;
+ });
+ if(line)lines.push(line);
+
+ const maxLines=6;
+ const shown=lines.slice(0,maxLines);
+ let y=555;
+ shown.forEach(text=>{
+  ctx.fillText(text,360,y);
+  y+=53;
+ });
+ if(lines.length>maxLines){
+  ctx.fillText("...",360,y);
+  y+=53;
+ }
+
+ if(name){
+  ctx.fillStyle="#ffe28a";
+  ctx.font="bold 29px Arial";
+  ctx.fillText("— "+name,360,Math.min(y+35,825));
+ }
+
+ ctx.fillStyle="#ffe28a";
+ ctx.font="24px Arial";
+ ctx.fillText("अच्छी बात फैलाएं • नेकियों को आम करें",360,870);
+
+ canvas.toBlob(blob=>{
+  finalBlob=blob;
+ },"image/png");
+}
+
+function downloadStatus(){
+ const canvas=document.getElementById("preview");
+ canvas.toBlob(blob=>{
+  if(!blob)return;
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="madani-suvichar.png";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+ },"image/png");
+}
+
+async function shareStatus(){
+ const canvas=document.getElementById("preview");
+ canvas.toBlob(async blob=>{
+  if(!blob)return;
+  const file=new File([blob],"madani-suvichar.png",{type:"image/png"});
+
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+   try{
+    await navigator.share({
+     files:[file],
+     title:"MADANI SUVICHAR",
+     text:"🌙 MADANI SUVICHAR"
+    });
+   }catch(e){}
+  }else{
+   alert("पहले फोटो सेव करें। फिर WhatsApp Status में लगाएं।");
+  }
+ },"image/png");
+}
+
+showQuote();
+
+setInterval(showQuote,60000);
+
+if("serviceWorker" in navigator && location.protocol==="https:"){
+ navigator.serviceWorker.register("./sw.js").catch(()=>{});
+}
+</script>
+
+</body>
+</html>
