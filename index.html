@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#073d27">
+<meta name="description" content="Madani Suvichar - Islamic Suvichar, Namaz, Qibla, Tasbih">
+<title>MADANI SUVICHAR</title>
+<link rel="manifest" href="manifest.json">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f6f1;color:#153326}
+header{background:linear-gradient(135deg,#062c1c,#087448);color:white;text-align:center;padding:25px 12px;border-radius:0 0 25px 25px}
+.logo{font-size:42px}
+header h1{margin:8px 0;font-size:25px}
+header p{margin:5px;color:#d7f3df}
+.container{padding:14px;max-width:700px;margin:auto}
+.card{background:white;border-radius:17px;padding:17px;margin-bottom:14px;box-shadow:0 3px 12px #0000000d}
+h2{font-size:19px;margin:0 0 13px;color:#087448}
+h3{margin:5px 0}
+button,select,input,textarea{font:inherit}
+button{border:0;border-radius:11px;padding:12px 15px;background:#087448;color:white;cursor:pointer;margin:4px 2px}
+button:active{transform:scale(.97)}
+.secondary{background:#e4f2e8;color:#075c38}
+.danger{background:#a83c3c}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.menu{background:#e8f4eb;border-radius:14px;text-align:center;padding:17px 5px;color:#075c38;cursor:pointer;font-weight:bold}
+.menu span{display:block;font-size:28px;margin-bottom:8px}
+.quote{background:linear-gradient(140deg,#06452c,#08764b);color:white;text-align:center;padding:25px 18px;border-radius:17px}
+.quote p{font-size:21px;line-height:1.7}
+.quote small{color:#ccebd7}
+.credit{display:block;text-align:center;color:#ffe28a;font-weight:bold;margin:12px 0 4px;letter-spacing:.5px}
+.quote-credit{color:#ffe28a}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d4e2d7;border-radius:10px;margin:6px 0;background:white}
+textarea{min-height:85px;resize:vertical}
+label{display:block;margin-top:12px;font-weight:bold;font-size:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.time{background:#eaf5ed;padding:12px;border-radius:10px;margin:6px 0;display:flex;justify-content:space-between}
+#count{font-size:65px;text-align:center;font-weight:bold;color:#087448;padding:15px}
+#compass{width:210px;height:210px;border:8px solid #087448;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;font-size:65px;background:#f0f7f1;position:relative}
+#needle{color:#bd922b;display:inline-block}
+.hidden{display:none!important}
+footer{text-align:center;color:#6d8275;padding:25px}
+.small{font-size:13px;color:#64796c;line-height:1.6}
+#statusCanvas{width:100%;border-radius:12px;margin-top:12px}
+.quote-item{border-bottom:1px solid #e2eee5;padding:12px 0}
+.quote-item:last-child{border-bottom:0}
+.quote-item p{font-size:17px;line-height:1.6}
+.quote-item .credit{color:#087448}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">🌙</div>
+ <h1>MADANI SUVICHAR</h1>
+ <h3>मदनी सुविचार</h3>
+ <p>इस्लामी ज्ञान • अमल • इबादत</p>
+</header>
+
+<div class="container">
+
+<section id="home">
+ <div class="card">
+  <div class="row">
+   <div>
+    <b>अस्सलामु अलैकुम</b>
+    <div class="small" id="today"></div>
+   </div>
+   <div>🕌</div>
+  </div>
+ </div>
+
+ <div class="quote">
+  <small>🌙 आज का इस्लामी सुविचार</small>
+  <p id="dailyQuote"></p>
+  <small id="quoteCategory"></small>
+  <div class="credit quote-credit">— MADANI SUVICHAR —</div>
+  <button onclick="nextQuote()">अगला सुविचार ↻</button>
+  <button onclick="makeAutomaticStatus()">📸 अपनी फोटो बनाएं</button>
+  <button onclick="saveFavorite()">♡ पसंदीदा</button>
+ </div>
+
+ <div class="card">
+  <h2>🌿 हमारी सुविधाएं</h2>
+  <div class="grid">
+   <div class="menu" onclick="show('quotes')"><span>📖</span>सुविचार</div>
+   <div class="menu" onclick="show('prayer')"><span>🕋</span>नमाज़ का समय</div>
+   <div class="menu" onclick="show('qibla')"><span>🧭</span>क़िबला कंपास</div>
+   <div class="menu" onclick="show('tasbih')"><span>📿</span>तस्बीह काउंटर</div>
+   <div class="menu" onclick="show('photo')"><span>📸</span>फोटो स्टेटस</div>
+   <div class="menu" onclick="show('favorites')"><span>❤️</span>पसंदीदा</div>
+   <div class="menu" onclick="show('dua')"><span>🤲</span>दुआएं</div>
+   <div class="menu" onclick="show('info')"><span>ℹ️</span>जानकारी</div>
+  </div>
+ </div>
+</section>
+
+<section id="quotes" class="hidden">
+ <div class="card">
+  <h2>📖 इस्लामी सुविचार</h2>
+  <select id="category" onchange="renderQuotes()">
+   <option value="सभी">सभी सुविचार</option>
+   <option value="सब्र">सब्र</option>
+   <option value="शुक्र">शुक्र</option>
+   <option value="नमाज़">नमाज़</option>
+   <option value="अख़लाक">अख़लाक</option>
+   <option value="दुआ">दुआ</option>
+  </select>
+  <div id="quoteList"></div>
+ </div>
+</section>
+
+<section id="prayer" class="hidden">
+ <div class="card">
+  <h2>🕋 नमाज़ का समय</h2>
+  <p class="small">अपने वर्तमान स्थान के अनुसार समय जानने के लिए लोकेशन चालू करें।</p>
+  <button onclick="getLocation()">📍 मेरी लोकेशन प्राप्त करें</button>
+  <div id="locationText" class="small">लोकेशन अभी प्राप्त नहीं हुई।</div>
+  <div id="prayerList"></div>
+  <p class="small">गणना अनुमानित है। स्थानीय मस्जिद के समय से मिलान करें।</p>
+ </div>
+</section>
+
+<section id="qibla" class="hidden">
+ <div class="card" style="text-align:center">
+  <h2>🧭 क़िबला कंपास</h2>
+  <p class="small">मक्का शरीफ की दिशा जानने के लिए लोकेशन और फोन सेंसर की अनुमति दें।</p>
+  <button onclick="getLocation()">📍 लोकेशन प्राप्त करें</button>
+  <button onclick="startCompass()">कंपास चालू करें</button>
+  <div id="compass"><span id="needle">🕋</span></div>
+  <h3 id="qiblaText">क़िबला दिशा की प्रतीक्षा है</h3>
+  <p class="small" id="compassHelp"></p>
+ </div>
+</section>
+
+<section id="tasbih" class="hidden">
+ <div class="card" style="text-align:center">
+  <h2>📿 डिजिटल तस्बीह</h2>
+  <select id="tasbihType">
+   <option>सुब्हानअल्लाह</option>
+   <option>अल्हम्दुलिल्लाह</option>
+   <option>अल्लाहु अकबर</option>
+   <option>अस्तग़फ़िरुल्लाह</option>
+   <option>दरूद शरीफ</option>
+  </select>
+  <div id="count">0</div>
+  <p>लक्ष्य चुनें</p>
+  <select id="target">
+   <option value="33">33</option>
+   <option value="99">99</option>
+   <option value="100">100</option>
+   <option value="0">कोई लक्ष्य नहीं</option>
+  </select>
+  <button style="width:85%;padding:22px;font-size:22px" onclick="addTasbih()">📿 गिनती करें</button>
+  <br>
+  <button class="secondary" onclick="resetTasbih()">रीसेट</button>
+  <button class="secondary" onclick="toggleVibration()" id="vibBtn">वाइब्रेशन: चालू</button>
+  <p class="small" id="tasbihMessage">हर टच पर गिनती बढ़ेगी।</p>
+ </div>
+</section>
+
+<section id="photo" class="hidden">
+ <div class="card">
+  <h2>📸 अपना फोटो सुविचार स्टेटस बनाएं</h2>
+  <p class="small">अपनी फोटो चुनें। ऐप का वर्तमान सुविचार अपने आप फोटो पर आएगा।</p>
+
+  <label>📁 Gallery से फोटो चुनें</label>
+  <input type="file" id="galleryInput" accept="image/*" onchange="loadPhoto(event)">
+
+  <label>📷 Camera से फोटो लें</label>
+  <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="loadPhoto(event)">
+
+  <label>अपना नाम लिखें (वैकल्पिक)</label>
+  <input type="text" id="visitorName" maxlength="35" placeholder="अपना नाम लिखें...">
+
+  <p class="small">फोटो पर ऐप का सुविचार और आपका नाम दिखाई देगा। नाम लिखना जरूरी नहीं है।</p>
+
+  <label>लिखावट का रंग</label>
+  <select id="fontColor">
+   <option value="#ffffff">सफेद</option>
+   <option value="#ffe28a">सुनहरा</option>
+   <option value="#083d27">हरा</option>
+   <option value="#000000">काला</option>
+  </select>
+
+  <label>लिखावट का आकार</label>
+  <select id="fontSize">
+   <option value="36">छोटा</option>
+   <option value="46" selected>मध्यम</option>
+   <option value="56">बड़ा</option>
+  </select>
+
+  <button onclick="makeAutomaticStatus()">✨ फोटो तैयार करें</button>
+
+  <canvas id="statusCanvas" class="hidden"></canvas>
+  <div id="photoResult"></div>
+ </div>
+</section>
+
+<section id="favorites" class="hidden">
+ <div class="card">
+  <h2>❤️ मेरे पसंदीदा सुविचार</h2>
+  <div id="favoriteList"></div>
+ </div>
+</section>
+
+<section id="dua" class="hidden">
+ <div class="card">
+  <h2>🤲 दुआ और याद</h2>
+  <div class="time"><div><b>खाने से पहले</b><p>बिस्मिल्लाह</p><small>अल्लाह के नाम से।</small></div></div>
+  <div class="time"><div><b>खाने के बाद</b><p>अल्हम्दुलिल्लाह</p><small>सभी प्रशंसा अल्लाह के लिए है।</small></div></div>
+  <div class="time"><div><b>सलाम</b><p>अस्सलामु अलैकुम</p><small>आप पर शांति हो।</small></div></div>
+  <p class="small">यहाँ दिए गए छोटे ज़िक्र हैं, पूर्ण दुआओं का विकल्प नहीं।</p>
+ </div>
+</section>
+
+<section id="info" class="hidden">
+ <div class="card">
+  <h2>🌙 मदनी सुविचार</h2>
+  <p>इस्लामी सीख, अच्छे विचार और इबादत की याद दिलाने वाला एक निःशुल्क ऐप।</p>
+  <p>हमारा उद्देश्य: अच्छे अख़लाक, सब्र, शुक्र और नमाज़ की अहमियत को याद रखना।</p>
+  <p class="small">सुविचार सामान्य प्रेरणात्मक संदेश हैं। उन्हें कुरान की आयत या प्रमाणित हदीस न समझें।</p>
+  <div class="credit" style="color:#087448">Presented by Asif Khimani</div>
+ </div>
+</section>
+
+<div class="card">
+ <button class="secondary" style="width:100%" onclick="show('home')">🏠 मुख्य पेज पर वापस जाएं</button>
+</div>
+
+</div>
+
+<footer>
+ 🌙 MADANI SUVICHAR<br>
+ <small>अल्लाह हमें नेक अमल की तौफीक़ अता फरमाए। आमीन।</small>
+</footer>
+
+<script>
+const quotes=[
+ {t:"सब्र करने वालों के लिए अल्लाह की रहमत बहुत बड़ी है।",c:"सब्र"},
+ {t:"हर हाल में अल्लाह का शुक्र अदा करें।",c:"शुक्र"},
+ {t:"नमाज़ को अपनी जिंदगी का अहम हिस्सा बनाएं।",c:"नमाज़"},
+ {t:"अच्छा अख़लाक इंसान की खूबसूरती है।",c:"अख़लाक"},
+ {t:"दुआ दिल को सुकून और उम्मीद देती है।",c:"दुआ"},
+ {t:"दूसरों के साथ वैसा ही व्यवहार करें जैसा आप अपने लिए चाहते हैं।",c:"अख़लाक"},
+ {t:"मुश्किल समय में भी अल्लाह से उम्मीद रखें।",c:"सब्र"},
+ {t:"नेकी का कोई छोटा काम भी छोटा नहीं होता।",c:"अख़लाक"},
+ {t:"अपने माता-पिता का सम्मान करें।",c:"अख़लाक"},
+ {t:"शुक्रगुज़ार दिल में सुकून रहता है।",c:"शुक्र"},
+ {t:"अपने दिन की शुरुआत अल्लाह की याद से करें।",c:"दुआ"},
+ {t:"नमाज़ की पाबंदी की कोशिश करते रहें।",c:"नमाज़"}
+];
+
+let current=0;
+let activePhoto=null;
+let qiblaBearing=null;
+let vibration=true;
+let latitude=null,longitude=null;
+let tasbihCount=Number(localStorage.getItem("madaniCount")||0);
+let lastDailyDate="";
+
+function getISTDateKey(){
+ const parts=new Intl.DateTimeFormat("en-US",{
+  timeZone:"Asia/Kolkata",
+  year:"numeric",
+  month:"2-digit",
+  day:"2-digit"
+ }).formatToParts(new Date());
+
+ const year=parts.find(p=>p.type==="year").value;
+ const month=parts.find(p=>p.type==="month").value;
+ const day=parts.find(p=>p.type==="day").value;
+
+ return year+"-"+month+"-"+day;
+}
+
+function dailyIndex(){
+ const parts=getISTDateKey().split("-").map(Number);
+ const date=Date.UTC(parts[0],parts[1]-1,parts[2]);
+ return Math.floor(date/86400000)%quotes.length;
+}
+
+function updateToday(){
+ document.getElementById("today").textContent=
+ new Date().toLocaleDateString("hi-IN",{
+  timeZone:"Asia/Kolkata",
+  day:"numeric",
+  month:"long",
+  year:"numeric"
+ });
+}
+
+function setQuote(i){
+ current=(i+quotes.length)%quotes.length;
+ document.getElementById("dailyQuote").textContent=quotes[current].t;
+ document.getElementById("quoteCategory").textContent=quotes[current].c;
+}
+
+function nextQuote(){
+ setQuote(current+1);
+}
+
+function checkNewDay(){
+ const todayKey=getISTDateKey();
+
+ if(todayKey!==lastDailyDate){
+  lastDailyDate=todayKey;
+  setQuote(dailyIndex());
+  updateToday();
+ }
+}
+
+function renderQuotes(){
+ const cat=document.getElementById("category").value;
+ const el=document.getElementById("quoteList");
+ el.innerHTML="";
+
+ quotes.forEach((q,i)=>{
+  if(cat==="सभी"||q.c===cat){
+   const d=document.createElement("div");
+   d.className="quote-item";
+
+   const p=document.createElement("p");
+   p.textContent=q.t;
+
+   const small=document.createElement("small");
+   small.textContent="श्रेणी: "+q.c;
+
+   const credit=document.createElement("div");
+   credit.className="credit";
+   credit.textContent="— MADANI SUVICHAR —";
+
+   const b=document.createElement("button");
+   b.textContent="♡ पसंदीदा";
+   b.onclick=()=>addFavorite(i);
+
+   d.append(p,small,credit,b);
+   el.appendChild(d);
+  }
+ });
+}
+
+function getFavorites(){
+ try{return JSON.parse(localStorage.getItem("madaniFavorites")||"[]")}
+ catch(e){return []}
+}
+
+function addFavorite(i){
+ let a=getFavorites();
+ if(!a.includes(i))a.push(i);
+ localStorage.setItem("madaniFavorites",JSON.stringify(a));
+ alert("पसंदीदा में सेव हो गया।");
+}
+
+function saveFavorite(){
+ addFavorite(current);
+}
+
+function showFavorites(){
+ const el=document.getElementById("favoriteList");
+ el.innerHTML="";
+
+ getFavorites().forEach(i=>{
+  const q=quotes[i];
+  if(!q)return;
+
+  const d=document.createElement("div");
+  d.className="quote-item";
+
+  const p=document.createElement("p");
+  p.textContent=q.t;
+
+  const credit=document.createElement("div");
+  credit.className="credit";
+  credit.textContent="— MADANI SUVICHAR —";
+
+  const b=document.createElement("button");
+  b.textContent="हटाएं";
+  b.onclick=()=>{
+   localStorage.setItem(
+    "madaniFavorites",
+    JSON.stringify(getFavorites().filter(x=>x!==i))
+   );
+   showFavorites();
+  };
+
+  d.append(p,credit,b);
+  el.appendChild(d);
+ });
+
+ if(!el.children.length){
+  el.textContent="अभी कोई पसंदीदा सुविचार नहीं है।";
+ }
+}
+
+function show(id){
+ document.querySelectorAll(
+  "#home,#quotes,#prayer,#qibla,#tasbih,#photo,#favorites,#dua,#info"
+ ).forEach(s=>s.classList.add("hidden"));
+
+ document.getElementById(id).classList.remove("hidden");
+
+ if(id==="quotes")renderQuotes();
+ if(id==="favorites")showFavorites();
+
+ window.scrollTo(0,0);
+}
+
+// TASBIH
+function updateCount(){
+ document.getElementById("count").textContent=tasbihCount;
+ localStorage.setItem("madaniCount",tasbihCount);
+}
+
+function addTasbih(){
+ tasbihCount++;
+ updateCount();
+
+ if(vibration&&navigator.vibrate)navigator.vibrate(35);
+
+ const target=Number(document.getElementById("target").value);
+
+ if(target&&tasbihCount%target===0){
+  document.getElementById("tasbihMessage").textContent=
+   "माशाअल्लाह! आपका लक्ष्य पूरा हुआ।";
+
+  if(vibration&&navigator.vibrate)navigator.vibrate([80,60,80]);
+ }else{
+  document.getElementById("tasbihMessage").textContent=
+   "अल्लाह का ज़िक्र जारी रखें।";
+ }
+}
+
+function resetTasbih(){
+ if(confirm("क्या आप गिनती रीसेट करना चाहते हैं?")){
+  tasbihCount=0;
+  updateCount();
+ }
+}
+
+function toggleVibration(){
+ vibration=!vibration;
+ document.getElementById("vibBtn").textContent=
+  "वाइब्रेशन: "+(vibration?"चालू":"बंद");
+}
+
+updateCount();
+
+// LOCATION & PRAYER
+function getLocation(){
+ if(!navigator.geolocation){
+  alert("आपका ब्राउज़र लोकेशन सपोर्ट नहीं करता।");
+  return;
+ }
+
+ document.getElementById("locationText").textContent=
+  "लोकेशन प्राप्त हो रही है...";
+
+ navigator.geolocation.getCurrentPosition(pos=>{
+  latitude=pos.coords.latitude;
+  longitude=pos.coords.longitude;
+
+  document.getElementById("locationText").textContent=
+   "Latitude: "+latitude.toFixed(4)+
+   " | Longitude: "+longitude.toFixed(4);
+
+  calculateQibla();
+  calculatePrayerTimes();
+
+ },()=>{
+  document.getElementById("locationText").textContent=
+   "लोकेशन नहीं मिली। कृपया अनुमति दें और दोबारा कोशिश करें।";
+ },{enableHighAccuracy:true,timeout:15000});
+}
+
+function prayerCalc(lat,lon,date){
+ const rad=Math.PI/180;
+
+ const day=Math.floor(
+  (Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())-
+   Date.UTC(date.getFullYear(),0,0))/86400000
+ );
+
+ const g=2*Math.PI/365*(day-1);
+
+ const eq=229.18*(
+  0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)
+  -0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g)
+ );
+
+ const dec=0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)
+  -0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)
+  -0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+
+ const noon=12-lon/15-eq/60;
+
+ function angleTime(angle){
+  const c=(Math.sin(angle*rad)-Math.sin(lat*rad)*Math.sin(dec))/
+   (Math.cos(lat*rad)*Math.cos(dec));
+
+  if(c>1||c< -1)return null;
+
+  return Math.acos(c)*180/Math.PI/15;
+ }
+
+ const rise=angleTime(-0.833);
+ const fajr=angleTime(-18);
+ const isha=angleTime(-17.5);
+
+ const asrAngle=-Math.atan(
+  1/(1+Math.tan(Math.abs(lat-dec*180/Math.PI)*rad))
+ )/rad;
+
+ const asr=angleTime(asrAngle);
+
+ const fmt=t=>{
+  if(t===null||!isFinite(t))return "गणना उपलब्ध नहीं";
+
+  let mins=Math.round(t*60);
+  mins=(mins%1440+1440)%1440;
+
+  return String(Math.floor(mins/60)).padStart(2,"0")+":"+
+   String(mins%60).padStart(2,"0");
+ };
+
+ return {
+  "फ़ज्र":fmt(noon-fajr),
+  "सूर्योदय":fmt(noon-rise),
+  "ज़ुहर":fmt(noon),
+  "असर":fmt(noon+asr),
+  "मग़रिब":fmt(noon+rise),
+  "ईशा":fmt(noon+isha)
+ };
+}
+
+function calculatePrayerTimes(){
+ if(latitude===null)return;
+
+ const times=prayerCalc(latitude,longitude,new Date());
+ const el=document.getElementById("prayerList");
+ el.innerHTML="";
+
+ Object.entries(times).forEach(([name,time])=>{
+  const d=document.createElement("div");
+  d.className="time";
+
+  const b=document.createElement("b");
+  b.textContent=name;
+
+  const span=document.createElement("span");
+  span.textContent=time;
+
+  d.append(b,span);
+  el.appendChild(d);
+ });
+}
+
+// QIBLA
+function calculateQibla(){
+ if(latitude===null)return;
+
+ const rad=Math.PI/180;
+ const lat1=latitude*rad,lon1=longitude*rad;
+ const lat2=21.4225*rad,lon2=39.8262*rad;
+
+ const y=Math.sin(lon2-lon1);
+ const x=Math.cos(lat1)*Math.tan(lat2)-
+  Math.sin(lat1)*Math.cos(lon2-lon1);
+
+ qiblaBearing=(Math.atan2(y,x)/rad+360)%360;
+
+ document.getElementById("qiblaText").textContent=
+  "क़िबला दिशा: "+qiblaBearing.toFixed(1)+"°";
+
+ document.getElementById("compassHelp").textContent=
+  "उत्तर से घड़ी की दिशा में "+qiblaBearing.toFixed(1)+" डिग्री।";
+}
+
+function startCompass(){
+ if(qiblaBearing===null){
+  alert("पहले लोकेशन प्राप्त करें।");
+  return;
+ }
+
+ function enable(){
+  window.addEventListener("deviceorientation",handleOrientation,true);
+ }
+
+ if(typeof DeviceOrientationEvent!=="undefined"&&
+  typeof DeviceOrientationEvent.requestPermission==="function"){
+
+  DeviceOrientationEvent.requestPermission().then(r=>{
+   if(r==="granted")enable();
+   else alert("कंपास की अनुमति नहीं मिली।");
+  }).catch(()=>alert("कंपास चालू नहीं हो सका।"));
+
+ }else{
+  enable();
+ }
+}
+
+function handleOrientation(e){
+ let heading=null;
+
+ if(typeof e.webkitCompassHeading==="number"){
+  heading=e.webkitCompassHeading;
+ }else if(typeof e.alpha==="number"){
+  heading=(360-e.alpha)%360;
+ }
+
+ if(heading===null)return;
+
+ let rotation=(qiblaBearing-heading+360)%360;
+
+ document.getElementById("needle").style.transform=
+  "rotate("+rotation+"deg)";
+}
+
+// PHOTO STATUS
+function loadPhoto(event){
+ const file=event.target.files[0];
+ if(!file)return;
+
+ if(!file.type.startsWith("image/")){
+  alert("कृपया फोटो चुनें।");
+  return;
+ }
+
+ const reader=new FileReader();
+
+ reader.onload=e=>{
+  const img=new Image();
+
+  img.onload=()=>{
+   activePhoto=img;
+   alert("आपकी फोटो तैयार है। अब फोटो तैयार करें बटन दबाएं।");
+  };
+
+  img.onerror=()=>{
+   alert("यह फोटो खुल नहीं सकी। दूसरी फोटो चुनें।");
+  };
+
+  img.src=e.target.result;
+ };
+
+ reader.readAsDataURL(file);
+}
+
+function wrapText(ctx,text,maxWidth){
+ const words=text.split(/\s+/);
+ const lines=[];
+ let line="";
+
+ words.forEach(word=>{
+  const test=line?line+" "+word:word;
+
+  if(ctx.measureText(test).width>maxWidth&&line){
+   lines.push(line);
+   line=word;
+  }else{
+   line=test;
+  }
+ });
+
+ if(line)lines.push(line);
+ return lines;
+}
+
+function createStatus(text){
+ if(!activePhoto){
+  alert("पहले Gallery या Camera से अपनी फोटो चुनें।");
+  return;
+ }
+
+ const canvas=document.getElementById("statusCanvas");
+ const ctx=canvas.getContext("2d");
+ const W=900,H=1200;
+
+ canvas.width=W;
+ canvas.height=H;
+
+ const img=activePhoto;
+ const scale=Math.max(W/img.width,H/img.height);
+ const sw=W/scale,sh=H/scale;
+
+ ctx.drawImage(
+  img,
+  (img.width-sw)/2,
+  (img.height-sh)/2,
+  sw,sh,0,0,W,H
+ );
+
+ const gradient=ctx.createLinearGradient(0,500,0,H);
+ gradient.addColorStop(0,"rgba(0,0,0,0)");
+ gradient.addColorStop(1,"rgba(0,35,20,0.94)");
+
+ ctx.fillStyle=gradient;
+ ctx.fillRect(0,400,W,800);
+
+ const color=document.getElementById("fontColor").value;
+ const size=Number(document.getElementById("fontSize").value);
+ const visitorName=document.getElementById("visitorName").value.trim();
+
+ ctx.textAlign="center";
+ ctx.fillStyle=color;
+ ctx.shadowColor="#000";
+ ctx.shadowBlur=5;
+
+ ctx.font="bold 30px Arial";
+ ctx.fillText("🌙 MADANI SUVICHAR",W/2,800);
+
+ ctx.font="bold "+size+"px Arial";
+
+ const lines=wrapText(ctx,text,W-100);
+ const lineHeight=size*1.5;
+ let y=900-(lines.length*lineHeight)/2;
+
+ lines.forEach(line=>{
+  ctx.fillText(line,W/2,y);
+  y+=lineHeight;
+ });
+
+ ctx.shadowBlur=0;
+
+ if(visitorName){
+  ctx.fillStyle="#ffe28a";
+  ctx.font="bold 38px Arial";
+  ctx.fillText(visitorName,W/2,1100);
+ }
+
+ canvas.classList.remove("hidden");
+
+ document.getElementById("photoResult").innerHTML=
+  '<button onclick="downloadStatus()">⬇️ फोटो सेव करें</button>'+
+  '<button onclick="shareStatus()">📲 WhatsApp पर शेयर करें</button>';
+}
+
+function makeAutomaticStatus(){
+ if(!activePhoto){
+  show("photo");
+  alert("पहले Gallery या Camera से अपनी फोटो चुनें।");
+  return;
+ }
+
+ createStatus(quotes[current].t);
+}
+
+function canvasBlob(){
+ return new Promise(resolve=>{
+  document.getElementById("statusCanvas").toBlob(
+   resolve,"image/jpeg",0.92
+  );
+ });
+}
+
+async function downloadStatus(){
+ const blob=await canvasBlob();
+
+ if(!blob){
+  alert("फोटो तैयार नहीं हुई।");
+  return;
+ }
+
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download="madani-suvichar.jpg";
+ a.click();
+
+ setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+
+async function shareStatus(){
+ const blob=await canvasBlob();
+
+ if(!blob){
+  alert("फोटो तैयार नहीं हुई।");
+  return;
+ }
+
+ const file=new File(
+  [blob],
+  "madani-suvichar.jpg",
+  {type:"image/jpeg"}
+ );
+
+ if(navigator.canShare&&navigator.canShare({files:[file]})){
+  try{
+   await navigator.share({
+    files:[file],
+    title:"Madani Suvichar"
+   });
+  }catch(e){}
+ }else{
+  await downloadStatus();
+  alert("फोटो सेव हो गई। अब WhatsApp Status में इसे चुनें।");
+ }
+}
+
+// START
+lastDailyDate=getISTDateKey();
+setQuote(dailyIndex());
+updateToday();
+
+// ऐप ખુલ્લી હોય ત્યારે પણ દર 30 સેકન્ડે તારીખ તપાસશે.
+setInterval(checkNewDay,30000);
+
+if("serviceWorker" in navigator && location.protocol==="https:"){
+ navigator.serviceWorker.register("./sw.js").catch(()=>{});
+}
+</script>
+</body>
+</html>
