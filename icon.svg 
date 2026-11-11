@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#073d27"/>
+  <circle cx="256" cy="220" r="145" fill="#087448" stroke="#ffe28a" stroke-width="12"/>
+  <circle cx="235" cy="190" r="82" fill="#ffe28a"/>
+  <circle cx="285" cy="155" r="82" fill="#087448"/>
+  <path d="M345 105 L360 145 L402 160 L360 175 L345 215 L330 175 L288 160 L330 145 Z" fill="#ffe28a"/>
+  <text x="256" y="340" font-size="55" font-weight="bold" text-anchor="middle" fill="white">MADANI</text>
+  <text x="256" y="395" font-size="38" text-anchor="middle" fill="#ffe28a">SUVICHAR</text>
+</svg>
